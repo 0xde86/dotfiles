@@ -59,6 +59,8 @@ function claude_my() {
 
 function claude_max() {
 	export CLAUDE_CONFIG_DIR="$HOME/.claude-max"
+	rm ~/.claude-max/settings.json
+	cp ~/.claude/settings.json ~/.claude-max/
 }
 
 eval "$(ssh-agent -s)" > /dev/null
