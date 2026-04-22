@@ -32,5 +32,6 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": false
-  }
+  },
+  "effortLevel": "xhigh"
 }
