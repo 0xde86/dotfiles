@@ -8,6 +8,7 @@ sudo pacman -S bubblewrap socat
 sudo pacman -S yazi ffmpeg 7zip jq poppler fd zoxide imagemagick
 sudo pacman -S zed helix neovim lldb hugo graphviz docker
 sudo pacman -S flatpak
+sudo pacman -S lua-language-server
 
 # Setup appimage support
 sudo pacman -S fuse

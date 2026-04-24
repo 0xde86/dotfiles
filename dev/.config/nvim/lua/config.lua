@@ -6,5 +6,6 @@ vim.o.shiftwidth = 2
 vim.o.colorcolumn = "100"
 vim.o.listchars = "tab:»·,multispace:│   ,eol:↵,trail:·"
 vim.o.winborder = "rounded"
+vim.o.signcolumn = "yes"
 
 vim.g.mapleader = " "
