@@ -24,3 +24,5 @@ cd ~/.zsh/zsh-completions
 git pull
 cd ~/.zsh/zsh-syntax-highlighting
 git pull
+
+claude update

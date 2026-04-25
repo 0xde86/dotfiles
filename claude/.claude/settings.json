@@ -25,11 +25,13 @@
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "postman@claude-plugins-official": true
+    "postman@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": false
   },
-  "effortLevel": "high"
+  "effortLevel": "xhigh",
+  "theme": "auto"
 }

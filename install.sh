@@ -21,6 +21,7 @@ paru -S ttf-jetbrains-mono-nerd
 paru -S brave-bin
 paru -S vscodium-bin
 paru -S golangci-lint
+paru -S flutter
 
 # Prepare dotfiles
 cd ~/dotfiles
@@ -55,6 +56,7 @@ rustup component add rust-analyzer
 cargo install fnm
 cargo install cargo-audit
 cargo install codebook-lsp
+cargo install just
 cargo install cargo-update
 
 # Setup Zig (zvm)
