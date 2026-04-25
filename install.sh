@@ -57,6 +57,7 @@ cargo install fnm
 cargo install cargo-audit
 cargo install codebook-lsp
 cargo install just
+cargo install just-lsp
 cargo install cargo-update
 
 # Setup Zig (zvm)
