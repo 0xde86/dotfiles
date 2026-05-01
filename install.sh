@@ -60,6 +60,11 @@ cargo install just
 cargo install just-lsp
 cargo install cargo-update
 
+# Setup zapp (zsa flash tool)
+mkdir ~/dev
+git clone https://github.com/zsa/zapp.git ~/dev/zapp
+cargo install --path ~/dev/zapp/zapp
+
 # Setup Zig (zvm)
 curl https://raw.githubusercontent.com/tristanisham/zvm/master/install.sh | bash
 source ~/.zshenv
