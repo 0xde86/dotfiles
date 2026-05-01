@@ -65,6 +65,10 @@ mkdir ~/dev
 git clone https://github.com/zsa/zapp.git ~/dev/zapp
 cargo install --path ~/dev/zapp/zapp
 
+sudo cp ~/dev/zapp/udev/50-zsa.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
 # Setup Zig (zvm)
 curl https://raw.githubusercontent.com/tristanisham/zvm/master/install.sh | bash
 source ~/.zshenv
