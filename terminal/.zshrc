@@ -53,11 +53,11 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-function claude_my() {
+function clmy() {
 	export CLAUDE_CONFIG_DIR="$HOME/.claude"
 }
 
-function claude_max() {
+function clmax() {
 	export CLAUDE_CONFIG_DIR="$HOME/.claude-max"
 	rm ~/.claude-max/settings.json
 	cp ~/.claude/settings.json ~/.claude-max/
