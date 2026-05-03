@@ -24,9 +24,11 @@ alias z="zoxide"
 alias zed="zeditor"
 
 export EDITOR="helix"
+export CHROME_EXECUTABLE="brave"
 export PATH="$PATH:$HOME/bin"
 export PATH=$HOME/.local/bin:$PATH
-export CHROME_EXECUTABLE="brave"
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/bin"
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
