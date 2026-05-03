@@ -30,7 +30,13 @@
   },
   "sandbox": {
     "enabled": true,
-    "autoAllowBashIfSandboxed": false
+    "autoAllowBashIfSandboxed": false,
+    "filesystem": {
+      "allowWrite": [
+        "/home/vir/.cache/go-build",
+        "/home/vir/.gm/workspace/pkg/mod"
+      ]
+    }
   },
   "effortLevel": "xhigh",
   "theme": "auto"
