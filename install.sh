@@ -3,6 +3,7 @@
 sudo pacman -Syu
 paru -Syu
 
+sudo pacman -S base-devel git
 sudo pacman -S ttf-font-nerd ttf-firacode-nerd ttf-font-awesome stow fzf eza ripgrep bat btop kitty starship
 sudo pacman -S bubblewrap socat
 sudo pacman -S yazi ffmpeg 7zip jq poppler fd zoxide imagemagick
@@ -22,6 +23,7 @@ paru -S brave-bin
 paru -S vscodium-bin
 paru -S golangci-lint
 paru -S flutter
+paru -S android-studio
 
 # Prepare dotfiles
 cd ~/dotfiles
