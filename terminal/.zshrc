@@ -28,7 +28,7 @@ export CHROME_EXECUTABLE="brave"
 export PATH="$PATH:$HOME/bin"
 export PATH=$HOME/.local/bin:$PATH
 export ANDROID_HOME="$HOME/Android/Sdk"
-export PATH="$PATH:$ANDROID_HOME/cmdline-tools/bin"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
