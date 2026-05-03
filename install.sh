@@ -11,6 +11,16 @@ sudo pacman -S zed helix neovim lldb hugo graphviz docker
 sudo pacman -S flatpak
 sudo pacman -S lua-language-server
 
+# Setup KVM
+sudo pacman -S qemu-full virt-manager virt-viewer libvirt dnsmasq edk2-ovmf swtpm iptables-nft
+# enable and start the libvirtd daemon to manage virtual machines
+sudo systemctl enable --now libvirtd
+# non-root control over virtual machines
+sudo usermod -aG libvirt $(whoami)
+# start the default NAT network so VMs have internet access
+sudo virsh net-start default
+sudo virsh net-autostart default   
+
 # Setup appimage support
 sudo pacman -S fuse
 sudo modprobe fuse
