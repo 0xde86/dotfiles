@@ -26,6 +26,7 @@ alias zed="zeditor"
 export EDITOR="helix"
 export PATH="$PATH:$HOME/bin"
 export PATH=$HOME/.local/bin:$PATH
+export CHROME_EXECUTABLE="brave"
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
