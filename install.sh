@@ -32,8 +32,12 @@ paru -S ttf-jetbrains-mono-nerd
 paru -S brave-bin
 paru -S vscodium-bin
 paru -S golangci-lint
-paru -S flutter
-paru -S android-studio
+
+# flutter dev
+sudo pacman -S --needed jdk21-openjdk cmake
+sudo archlinux-java set java-21-openjdk
+git clone --depth 1 -b stable https://github.com/flutter/flutter.git ~/flutter
+
 
 # Prepare dotfiles
 cd ~/dotfiles

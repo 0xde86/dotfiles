@@ -25,4 +25,8 @@ git pull
 cd ~/.zsh/zsh-syntax-highlighting
 git pull
 
+# flutter
+cd ~/flutter
+git pull
+
 claude update

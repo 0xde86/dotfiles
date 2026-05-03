@@ -34,3 +34,12 @@ gpg --armor --export <KEY_ID>
 git config --global commit.gpgsign true
 git config --global user.signingkey <KEY_ID>
 ```
+
+## Download androi SDK
+
+Download from: https://developer.android.com/studio#command-line-tools-only
+```bash
+mkdir -p ~/Android/Sdk/cmdline-tools
+yes | sdkmanager --licenses
+sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+```
