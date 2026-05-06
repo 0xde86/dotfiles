@@ -35,11 +35,13 @@ git config --global commit.gpgsign true
 git config --global user.signingkey <KEY_ID>
 ```
 
-## Download androi SDK
+## Download android SDK
 
 Download from: https://developer.android.com/studio#command-line-tools-only
 ```bash
 mkdir -p ~/Android/Sdk/cmdline-tools
 yes | sdkmanager --licenses
 sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+sdkmanager "platforms;android-36" "build-tools;36.0.0" "build-tools;28.0.3"
+flutter doctor -v
 ```

@@ -74,6 +74,7 @@ cargo install cargo-audit
 cargo install codebook-lsp
 cargo install just
 cargo install just-lsp
+cargo install flutter_rust_bridge_codegen
 cargo install cargo-update
 
 # Setup zapp (zsa flash tool)
