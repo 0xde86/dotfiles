@@ -22,6 +22,7 @@ alias code="codium"
 alias hx="helix"
 alias z="zoxide"
 alias zed="zeditor"
+alias frbc="flutter_rust_bridge_codegen"
 
 export EDITOR="helix"
 export CHROME_EXECUTABLE="brave"
