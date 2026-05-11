@@ -2,6 +2,7 @@
 
 sudo pacman -Syu
 paru -Syu
+paru -S --rebuild $(pacman -Qq | grep hypr)
 
 # rust
 rustup self update
