@@ -10,6 +10,7 @@ sudo pacman -S yazi ffmpeg 7zip jq poppler fd zoxide imagemagick
 sudo pacman -S zed helix neovim lldb hugo graphviz docker
 sudo pacman -S flatpak
 sudo pacman -S lua-language-server
+sudo pacman -S lcov
 
 # Setup KVM
 sudo pacman -S qemu-full virt-manager virt-viewer libvirt dnsmasq edk2-ovmf swtpm iptables-nft
