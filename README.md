@@ -35,6 +35,27 @@ git config --global commit.gpgsign true
 git config --global user.signingkey <KEY_ID>
 ```
 
+## Secure DNS
+
+Update `/etc/dnscrypt-proxy/dnscrypt-proxy.toml`:
+```
+server_names = ['cloudflare']
+```
+
+ensure resolv.conf can be edited without it being overwritten. This can vary depending on your networking software, but for NetworkManager (default in most common Desktop Environments) it is as simple as adding the following to `/etc/NetworkManager/conf.d/dns.conf`:
+```
+[main]
+dns=none
+```
+
+Afterwards, edit `/etc/resolv.conf` to include the following:
+```
+nameserver ::1
+nameserver 127.0.0.1
+options edns0
+```
+And after a reboot it should be working perfectly. Test your connection with 1.1.1.1/help (easy to remember) or dnsleaktest.com (thorough)
+
 ## Download android SDK
 
 Download from: https://developer.android.com/studio#command-line-tools-only
