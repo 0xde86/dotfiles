@@ -12,8 +12,8 @@ sudo pacman -S flatpak
 sudo pacman -S lua-language-server
 sudo pacman -S lcov
 
-sudo pacman -S dnscrypt-proxy
-systemctl enable dnscrypt-proxy.service
+# sudo pacman -S dnscrypt-proxy
+# systemctl enable dnscrypt-proxy.service
 
 # Setup KVM
 sudo pacman -S qemu-full virt-manager virt-viewer libvirt dnsmasq edk2-ovmf swtpm iptables-nft
