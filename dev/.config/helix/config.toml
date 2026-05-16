@@ -18,13 +18,13 @@ render = true
 
 [keys.insert]
 "C-ret" = "completion"
+"C-backspace" = "delete_word_backward"# At most one section each of 'keys.normal', 'keys.' and 'keys.select'
 
-# At most one section each of 'keys.normal', 'keys.' and 'keys.select'
 [keys.normal]
 "tab" = "completion"
 "C-/" = "toggle_comments"
 "C-." = ":open ~/.config/helix/config.toml"
-"C->" = ":config-reload"
+"C-," = ":config-reload"
 
 [keys.select]
 C-z = "undo"
