@@ -117,6 +117,8 @@ go install github.com/spf13/cobra-cli@latest
 go install github.com/goreleaser/goreleaser/v2@latest
 # hacker-news reader
 go install github.com/bensadeh/circumflex/cmd/clx@latest
+# benchstat
+go install golang.org/x/perf/cmd/benchstat@latest
 
 # install bun
 curl -fsSL https://bun.sh/install | bash
