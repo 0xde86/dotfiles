@@ -6,7 +6,7 @@ sudo pacman -S base-devel git
 sudo pacman -S ttf-jetbrains-mono-nerd ttf-font-nerd ttf-firacode-nerd ttf-font-awesome stow fzf eza ripgrep bat btop kitty starship
 sudo pacman -S bubblewrap socat
 sudo pacman -S yazi ffmpeg 7zip jq poppler fd zoxide imagemagick
-sudo pacman -S zed helix neovim lldb hugo graphviz docker
+sudo pacman -S zed helix neovim vscodium lldb hugo graphviz docker
 sudo pacman -S flatpak
 sudo pacman -S lua-language-server
 sudo pacman -S lcov
@@ -44,7 +44,6 @@ sudo pacman -Sy vulkan-intel
 
 # AUR packages
 paru -Syu
-paru -S vscodium-bin
 paru -S catppuccin-gtk-theme-frappe
 
 # flutter dev
