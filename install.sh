@@ -4,7 +4,7 @@ sudo pacman -Syu
 paru -Syu
 
 sudo pacman -S base-devel git
-sudo pacman -S ttf-font-nerd ttf-firacode-nerd ttf-font-awesome stow fzf eza ripgrep bat btop kitty starship
+sudo pacman -S ttf-jetbrains-mono-nerd ttf-font-nerd ttf-firacode-nerd ttf-font-awesome stow fzf eza ripgrep bat btop kitty starship
 sudo pacman -S bubblewrap socat
 sudo pacman -S yazi ffmpeg 7zip jq poppler fd zoxide imagemagick
 sudo pacman -S zed helix neovim lldb hugo graphviz docker
@@ -14,6 +14,9 @@ sudo pacman -S lcov
 
 # sudo pacman -S dnscrypt-proxy
 # systemctl enable dnscrypt-proxy.service
+
+# rebuild font cache
+fc-cache -fv
 
 # Setup KVM
 sudo pacman -S qemu-full virt-manager virt-viewer libvirt dnsmasq edk2-ovmf swtpm iptables-nft
@@ -32,10 +35,7 @@ sudo modprobe fuse
 # Setup integrated video
 sudo pacman -Sy vulkan-intel
 
-paru -S ttf-jetbrains-mono-nerd
-paru -S brave-bin
 paru -S vscodium-bin
-paru -S golangci-lint
 
 # flutter dev
 sudo pacman -S --needed jdk21-openjdk cmake
@@ -107,7 +107,8 @@ gm i latest
 go install github.com/go-delve/delve/cmd/dlv@latest
 # language server
 go install golang.org/x/tools/gopls@latest
-# lint lsp
+# lint+lsp
+go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
 go install github.com/nametake/golangci-lint-langserver@latest
 # update tool
 go install github.com/nao1215/gup@latest
