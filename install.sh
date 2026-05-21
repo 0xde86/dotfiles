@@ -1,7 +1,6 @@
 #!/bin/bash
 
 sudo pacman -Syu
-paru -Syu
 
 sudo pacman -S base-devel git
 sudo pacman -S ttf-jetbrains-mono-nerd ttf-font-nerd ttf-firacode-nerd ttf-font-awesome stow fzf eza ripgrep bat btop kitty starship
@@ -11,6 +10,14 @@ sudo pacman -S zed helix neovim lldb hugo graphviz docker
 sudo pacman -S flatpak
 sudo pacman -S lua-language-server
 sudo pacman -S lcov
+
+# hyprland
+sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hypridle
+sudo pacman -S swaylock hyprshutdown nwg-look
+sudo pacman -S wl-clipboard grim slurp swaybg ttf-jetbrains-mono-nerd
+sudo pacman -S hyprlauncher hyprpaper hyprpolkitagent waybar hyprshot
+sudo pacman -S swaync # remove dunst if needed
+sudo pacman -S qt5-wayland qt6-wayland
 
 # sudo pacman -S dnscrypt-proxy
 # systemctl enable dnscrypt-proxy.service
@@ -35,7 +42,10 @@ sudo modprobe fuse
 # Setup integrated video
 sudo pacman -Sy vulkan-intel
 
+# AUR packages
+paru -Syu
 paru -S vscodium-bin
+paru -S catppuccin-gtk-theme-frappe
 
 # flutter dev
 sudo pacman -S --needed jdk21-openjdk cmake
