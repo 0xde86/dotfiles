@@ -49,20 +49,23 @@ sudo pacman -Sy vulkan-intel
 curl -sL https://api.github.com/repos/catppuccin/gtk/releases/latest | \
 jq -r '.assets[] | select(.name == "catppuccin-frappe-rosewater-standard+default.zip") | .browser_download_url' | \
 xargs curl -L -o "theme.zip"
+if echo "7693b77cef70814e277b6199b699c32c5229457641f811da9f70d2f51fbd89a3 theme.zip" | sha256sum --check --status; then
+	mkdir -p ~/.local/share/themes
+	unzip theme.zip -d ~/.local/share/themes/
+	rm theme.zip
 
-mkdir -p ~/.local/share/themes
-unzip theme.zip -d ~/.local/share/themes/
-rm theme.zip
-
-mkdir -p ~/.config/gtk-3.0
-mkdir -p ~/.config/gtk-4.0
-THEME_DIR=~/.local/share/themes/catppuccin-frappe-rosewater-standard+default
-ln -sf "${THEME_DIR}/gtk-4.0/assets" ~/.config/gtk-4.0/assets
-ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" ~/.config/gtk-4.0/gtk.css
-ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" ~/.config/gtk-4.0/gtk-dark.css
-ln -sf "${THEME_DIR}/gtk-3.0/assets" ~/.config/gtk-3.0/assets
-ln -sf "${THEME_DIR}/gtk-3.0/gtk.css" ~/.config/gtk-3.0/gtk.css
-ln -sf "${THEME_DIR}/gtk-3.0/gtk-dark.css" ~/.config/gtk-3.0/gtk-dark.css
+	mkdir -p ~/.config/gtk-3.0
+	mkdir -p ~/.config/gtk-4.0
+	THEME_DIR=~/.local/share/themes/catppuccin-frappe-rosewater-standard+default
+	ln -sf "${THEME_DIR}/gtk-4.0/assets" ~/.config/gtk-4.0/assets
+	ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" ~/.config/gtk-4.0/gtk.css
+	ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" ~/.config/gtk-4.0/gtk-dark.css
+	ln -sf "${THEME_DIR}/gtk-3.0/assets" ~/.config/gtk-3.0/assets
+	ln -sf "${THEME_DIR}/gtk-3.0/gtk.css" ~/.config/gtk-3.0/gtk.css
+	ln -sf "${THEME_DIR}/gtk-3.0/gtk-dark.css" ~/.config/gtk-3.0/gtk-dark.css
+else
+	echo "theme.zip checksum mismatch, skipping GTK theme install" >&2
+fi
 
 # flutter dev
 sudo pacman -S --needed jdk21-openjdk cmake
