@@ -42,9 +42,27 @@ sudo modprobe fuse
 # Setup integrated video
 sudo pacman -Sy vulkan-intel
 
-# AUR packages
-paru -Syu
-paru -S catppuccin-gtk-theme-frappe
+# # AUR packages
+# paru -Syu
+# paru -S catppuccin-gtk-theme-frappe
+# install catppucin gtk theme
+curl -sL https://api.github.com/repos/catppuccin/gtk/releases/latest | \
+jq -r '.assets[] | select(.name == "catppuccin-frappe-rosewater-standard+default.zip") | .browser_download_url' | \
+xargs curl -L -o "theme.zip"
+
+mkdir -p ~/.local/share/themes
+unzip theme.zip -d ~/.local/share/themes/
+rm theme.zip
+
+mkdir -p ~/.config/gtk-3.0
+mkdir -p ~/.config/gtk-4.0
+THEME_DIR=~/.local/share/themes/catppuccin-frappe-rosewater-standard+default
+ln -sf "${THEME_DIR}/gtk-4.0/assets" ~/.config/gtk-4.0/assets
+ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" ~/.config/gtk-4.0/gtk.css
+ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" ~/.config/gtk-4.0/gtk-dark.css
+ln -sf "${THEME_DIR}/gtk-3.0/assets" ~/.config/gtk-3.0/assets
+ln -sf "${THEME_DIR}/gtk-3.0/gtk.css" ~/.config/gtk-3.0/gtk.css
+ln -sf "${THEME_DIR}/gtk-3.0/gtk-dark.css" ~/.config/gtk-3.0/gtk-dark.css
 
 # flutter dev
 sudo pacman -S --needed jdk21-openjdk cmake
