@@ -29,6 +29,9 @@
   "vim": {
     "toggle_relative_line_numbers": true,
   },
+  "bindings": {
+    "F": "editor::ToggleFocus",
+  },
   "languages": {
     "Go": {
       "language_servers": ["gopls", "codebook", "..."],

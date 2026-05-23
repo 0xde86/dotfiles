@@ -4,6 +4,7 @@
     "claudeCode.preferredLocation": "panel",
     "editor.minimap.enabled": false,
     "editor.fontFamily": "JetBrainsMono Nerd Font",
+	"editor.fontSize": 13,
     "editor.allowVariableFonts": false,
     "editor.fontLigatures": true,
     "git.confirmSync": false,
@@ -15,15 +16,22 @@
 	// switch to the Debug Console when starting a session, so you can see the
 	// programs output.
 	"debug.internalConsoleOptions": "openOnSessionStart",
-
+  "[go]": {
+		"editor.insertSpaces": false,
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": "explicit"
+		},
+		"editor.rulers": [100],
+	},
 	"[dart]": {
 		// Automatically format code on save and during typing of certain characters
 		// (like `;` and `}`).
 		"editor.formatOnSave": true,
 		"editor.formatOnType": true,
 
-		// Draw a guide line at 80 characters, where Dart's formatting will wrap code.
-		"editor.rulers": [80],
+		// Draw a guide line at 100 characters, where Dart's formatting will wrap code.
+		"editor.rulers": [100],
 
 		// Disables built-in highlighting of words that match your selection. Without
 		// this, all instances of the selected text will be highlighted, interfering
@@ -39,5 +47,6 @@
 		// This results in code completion suggesting words when editing comments and
 		// strings. This setting will prevent that.
 		"editor.wordBasedSuggestions": "off",
-	}
+	},
+	"editor.tabSize": 2
 }
