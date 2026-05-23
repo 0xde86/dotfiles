@@ -7,11 +7,32 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Frappé - No Italics",
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Frappé",
+  },
+  "ui_font_size": 16.5,
+  "buffer_font_size": 13.0,
+  "ui_font_weight": 300.0,
+  "buffer_font_weight": 300.0,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "base_keymap": "VSCode",
   "helix_mode": true,
   "preferred_line_length": 100,
   "tab_size": 2,
   "vim": {
-    "toggle_relative_line_numbers": true
+    "toggle_relative_line_numbers": true,
+  },
+  "languages": {
+    "Go": {
+      "language_servers": ["gopls", "codebook", "..."],
+    },
   },
   "outline_panel": {
     "dock": "left",
@@ -35,29 +56,8 @@
       "type": "registry",
     },
   },
-  "icon_theme": {
-    "mode": "dark",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Frappé"
-  },
-  "ui_font_weight": 300.0,
-  "buffer_font_weight": 300.0,
-  "buffer_font_family": "JetBrainsMono Nerd Font",
   "telemetry": {
     "diagnostics": true,
     "metrics": false,
-  },
-  "base_keymap": "VSCode",
-  "ui_font_size": 16.0,
-  "buffer_font_size": 13.0,
-  "theme": {
-    "mode": "dark",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Frappé",
-  },
-  "languages": {
-    "Go": {
-      "language_servers": ["gopls", "codebook", "..."],
-    },
   },
 }
