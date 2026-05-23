@@ -42,9 +42,6 @@ sudo modprobe fuse
 # Setup integrated video
 sudo pacman -Sy vulkan-intel
 
-# # AUR packages
-# paru -Syu
-# paru -S catppuccin-gtk-theme-frappe
 # install catppucin gtk theme
 curl -sL https://api.github.com/repos/catppuccin/gtk/releases/latest | \
 jq -r '.assets[] | select(.name == "catppuccin-frappe-rosewater-standard+default.zip") | .browser_download_url' | \

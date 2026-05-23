@@ -64,5 +64,7 @@ mkdir -p ~/Android/Sdk/cmdline-tools
 yes | sdkmanager --licenses
 sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 sdkmanager "platforms;android-36" "build-tools;36.0.0" "build-tools;28.0.3"
+sdkmanager --install "system-images;android-33;google_apis;x86_64"
+avdmanager create avd -n Pixel_6 -k "system-images;android-33;google_apis;x86_64"
 flutter doctor -v
 ```

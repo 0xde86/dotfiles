@@ -2,8 +2,6 @@
 
 echo "Updating packman packages..."
 sudo pacman -Syu
-echo "Updating AUR packages..."
-paru -Syu
 echo "Rebuilding hyprland..."
 paru -S --rebuild $(pacman -Qq | grep hypr)
 
