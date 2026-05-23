@@ -1,26 +1,26 @@
 #!/bin/bash
 
-echo "Updating packman packages..."
+printf "\n ────────── Updating packman packages... ────────── \n\n"
 sudo pacman -Syu
-echo "Rebuilding hyprland..."
-paru -S --rebuild $(pacman -Qq | grep hypr)
+# printf "\nRebuilding hyprland..."
+# paru -S --rebuild $(pacman -Qq | grep hypr)
 
-echo "Updating Rustup & Updating rust binaries..."
+printf "\n ────────── Updating Rustup & Updating rust binaries... ────────── \n\n"
 rustup self update
 cargo install-update -a
 
-echo "Updating zvm..."
+printf "\n ────────── Updating zvm... ────────── \n\n"
 zvm upgrade
 
-echo "Updating GM..." 
+printf "\n ────────── Updating GM... ────────── \n\n" 
 gm up
-echo "Updating Go software..."
+printf "\n ────────── Updating Go software... ────────── \n\n"
 gup update
 
-echo "Updating bun..."
+printf "\n ────────── Updating bun... ────────── \n\n"
 bun upgrade
 
-echo "Updating zsh plugins..."
+printf "\n ────────── Updating zsh plugins... ────────── \n\n"
 cd ~/.zsh/zsh-autosuggestions
 git pull
 cd ~/.zsh/zsh-completions
@@ -28,9 +28,9 @@ git pull
 cd ~/.zsh/zsh-syntax-highlighting
 git pull
 
-echo "Updating flutter"
+printf "\n ────────── Updating flutter ────────── \n\n"
 cd ~/flutter
 git pull
 
-echo "Updating claude code..."
+printf "\n ────────── Updating claude code... ────────── \n\n"
 claude update
