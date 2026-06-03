@@ -23,7 +23,7 @@ alias hx="helix"
 alias z="zoxide"
 alias zed="zeditor"
 alias frbc="flutter_rust_bridge_codegen"
-alias run-imager='sudo QT_QPA_PLATFORM=wayland WAYLAND_DISPLAY="$WAYLAND_DISPLAY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" rpi-imager'
+alias rpiimager='sudo QT_QPA_PLATFORM=wayland WAYLAND_DISPLAY="$WAYLAND_DISPLAY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" rpi-imager'
 
 export EDITOR="helix"
 export CHROME_EXECUTABLE="brave"
