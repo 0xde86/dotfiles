@@ -32,5 +32,10 @@ printf "\n ────────── Updating flutter ───────
 cd ~/flutter
 git pull
 
+printf "\n ────────── Updating rpiboot ────────── \n\n"
+cd ~/.rpiboot
+git pull --recurse-submodules
+make
+
 printf "\n ────────── Updating claude code ────────── \n\n"
 claude update

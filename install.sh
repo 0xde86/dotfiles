@@ -2,7 +2,7 @@
 
 sudo pacman -Syu
 
-sudo pacman -S base-devel git
+sudo pacman -S --needed base-devel git libusb
 sudo pacman -S ttf-jetbrains-mono-nerd ttf-font-nerd ttf-firacode-nerd ttf-font-awesome stow fzf eza ripgrep bat btop kitty starship
 sudo pacman -S bubblewrap socat
 sudo pacman -S yazi ffmpeg 7zip jq poppler fd zoxide imagemagick
@@ -11,9 +11,6 @@ sudo pacman -S flatpak
 sudo pacman -S lua-language-server
 sudo pacman -S lcov
 sudo pacman -S xorg-xhost
-
-# Raspberry Pi dev
-sudo pacman -S rpi-imager
 
 # hyprland
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hypridle
@@ -155,5 +152,12 @@ go install golang.org/x/perf/cmd/benchstat@latest
 
 # install bun
 curl -fsSL https://bun.sh/install | bash
+
+# Raspberry Pi dev
+sudo pacman -S rpi-imager
+sudo pacman -S --needed dosfstools e2fsprogs parted curl arch-install-scripts
+sudo pacman -S --needed qemu-user-static qemu-user-static-binfmt
+git clone --recurse-submodules --shallow-submodules --depth=1 https://github.com/raspberrypi/usbboot ~/.rpiboot
+cd ~/.rpiboot && make
 
 reboot
