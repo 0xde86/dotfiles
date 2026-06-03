@@ -10,6 +10,10 @@ sudo pacman -S zed helix neovim vscodium lldb hugo graphviz docker
 sudo pacman -S flatpak
 sudo pacman -S lua-language-server
 sudo pacman -S lcov
+sudo pacman -S xorg-xhost
+
+# Raspberry Pi dev
+sudo pacman -S rpi-imager
 
 # hyprland
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hypridle
