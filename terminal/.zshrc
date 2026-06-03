@@ -29,6 +29,7 @@ export EDITOR="helix"
 export CHROME_EXECUTABLE="brave"
 export PATH="$PATH:$HOME/bin"
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.rpiboot:$PATH
 
 export PATH="$HOME/flutter/bin:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$PATH"
 export PATH="$HOME/Android/Sdk/emulator:$PATH"
