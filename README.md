@@ -68,3 +68,8 @@ sdkmanager --install "system-images;android-33;google_apis;x86_64"
 avdmanager create avd -n Pixel_6 -k "system-images;android-33;google_apis;x86_64"
 flutter doctor -v
 ```
+
+## Raspberry Pi dev
+
+1. Install "Raspberry Pi Pico" extention for VSCode
+2. 

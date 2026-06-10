@@ -24,6 +24,7 @@ alias z="zoxide"
 alias zed="zeditor"
 alias frbc="flutter_rust_bridge_codegen"
 alias rpiimager='sudo QT_QPA_PLATFORM=wayland WAYLAND_DISPLAY="$WAYLAND_DISPLAY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" rpi-imager'
+alias tinycode='tinygo-edit --editor codium --target pico2' 
 
 export EDITOR="helix"
 export CHROME_EXECUTABLE="brave"
@@ -31,6 +32,7 @@ export PATH="$PATH:$HOME/bin"
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.rpiboot:$PATH
 
+export PATH="$HOME/.tinygo/tinygo/bin:$PATH"
 export PATH="$HOME/flutter/bin:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$PATH"
 export PATH="$HOME/Android/Sdk/emulator:$PATH"
 export ANDROID_HOME="$HOME/Android/Sdk"

@@ -48,5 +48,7 @@
 		// strings. This setting will prevent that.
 		"editor.wordBasedSuggestions": "off",
 	},
-	"editor.tabSize": 2
+	"editor.tabSize": 2,
+	"raspberry-pi-pico.python3Path": "/bin/python",
+	"zig.zls.enabled": "on"
 }

@@ -149,6 +149,8 @@ go install github.com/goreleaser/goreleaser/v2@latest
 go install github.com/bensadeh/circumflex/cmd/clx@latest
 # benchstat
 go install golang.org/x/perf/cmd/benchstat@latest
+# tinygo-edit
+go install github.com/sago35/tinygo-edit@latest
 
 # install bun
 curl -fsSL https://bun.sh/install | bash
