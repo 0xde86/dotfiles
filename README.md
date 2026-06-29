@@ -349,3 +349,4 @@ SUBSYSTEM=="usb", \
 6. reload rules: `sudo udevadm control --reload-rules && sudo udevadm trigger`
 7. run: `sudo usermod -aG uucp $USER`
 8. run: `sudo pacman -S arm-none-eabi-gdb`
+9. run: `sudo pacman -S arm-none-eabi-binutils`
