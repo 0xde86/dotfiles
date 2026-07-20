@@ -1,16 +1,14 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/ for more
 -- See https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/ for workspace rules
 
-hl.workspace_rule({ workspace = "1",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "2",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "3",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "4",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "5",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "6",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "7",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "8",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "9",  monitor = "DP-3" })
-hl.workspace_rule({ workspace = "10", monitor = "eDP-1" })
+local power_profile = require("power_profile")
+
+for workspace = 1, 10 do
+    hl.workspace_rule({
+        workspace = tostring(workspace),
+        monitor = power_profile.primary_output,
+    })
+end
 
 hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
