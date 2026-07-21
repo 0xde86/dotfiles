@@ -1,15 +1,6 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/ for more
 -- See https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/ for workspace rules
 
-local power_profile = require("power_profile")
-
-for workspace = 1, 10 do
-    hl.workspace_rule({
-        workspace = tostring(workspace),
-        monitor = power_profile.primary_output,
-    })
-end
-
 hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
     name  = "suppress-maximize-events",

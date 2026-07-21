@@ -62,6 +62,7 @@ return {
     external_output = external_output,
     external_outputs = external_outputs,
     get_external_output = get_external_output,
+    is_connected = is_connected,
     primary_output = external_output or "eDP-1",
     power_mode = docked and "balanced" or "power-saver",
     gpu_order = docked

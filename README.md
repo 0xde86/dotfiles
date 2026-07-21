@@ -2,7 +2,7 @@
 
 Installation script is expected to be executed on CachyOS with Cosmic DE installed. Probably works on other flavors of Arch.
 
-note: during installation of cachyos uncheck insallation of fish shell
+> note: during installation of CachyOS uncheck installation of fish shell
 
 ## Install
 
@@ -10,6 +10,13 @@ note: during installation of cachyos uncheck insallation of fish shell
 git clone git@github.com:x-dvr/dotfiles.git
 cd dotfiles
 bash ./install.sh
+```
+
+## Fix desktop priority scheduling issues
+
+Create file `/etc/ananicy.d/99-local.rules`:
+```json
+{ "name": "greetd", "nice": 0, "sched": "other", "ioclass": "best-effort" }
 ```
 
 ## Generate SSH Keys
