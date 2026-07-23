@@ -1,6 +1,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Binds/
 
 local programs = require("programs")
+local monitors = require("monitors")
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
@@ -19,8 +20,15 @@ hl.bind(mainMod .. " + P",         hl.dsp.exec_cmd("hyprshot -m window"))
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprshot -m region"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("killall waybar && waybar"))
 hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd("swaylock"))
+
+-- Toggle the internal laptop panel by hand (auto monitor switching removed).
+-- Bound to Lua functions (see monitors.lua): `hyprctl keyword` does not work
+-- with the Lua config parser.
+hl.bind(mainMod .. " + CTRL + Y", monitors.enable_internal)
+hl.bind(mainMod .. " + CTRL + H", monitors.disable_internal)
 hl.bind(mainMod .. " + N",         hl.dsp.exec_cmd("hyprshutdown"))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"))
+hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"))
 
 -- Move focus with mainMod + HJKL
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
@@ -28,10 +36,10 @@ hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 
-hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
-hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "down" }))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
