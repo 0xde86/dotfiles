@@ -1,7 +1,6 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Binds/
 
 local programs = require("programs")
-local monitors = require("monitors")
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
@@ -21,11 +20,19 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprshot -m region"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("killall waybar && waybar"))
 hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd("swaylock"))
 
--- Toggle the internal laptop panel by hand (auto monitor switching removed).
--- Bound to Lua functions (see monitors.lua): `hyprctl keyword` does not work
--- with the Lua config parser.
-hl.bind(mainMod .. " + CTRL + Y", monitors.enable_internal)
-hl.bind(mainMod .. " + CTRL + H", monitors.disable_internal)
+-- Blank/unblank the internal laptop panel by hand (auto monitor switching removed).
+-- Only the backlight is toggled -- the DRM output is left enabled. Powering the
+-- output down (via `disabled` OR DPMS) makes Hyprland tear down and rebuild the
+-- Intel GPU's renderer -- eDP-1 is its only output -- and the panel wakes to a
+-- frozen frame that nothing in-session repaints (a known multi-GPU bug; neither
+-- forcerendererreload nor a full reload recovers it). Dimming the backlight never
+-- touches the output, so there is nothing to freeze.
+--   https://github.com/hyprwm/Hyprland/issues/8357  (can't wake monitor after dpms off)
+--   https://github.com/hyprwm/Hyprland/issues/4522  (dpms does not turn on again)
+--   https://github.com/hyprwm/Hyprland/issues/8891  (screen freezes on multi-monitor nvidia)
+--   https://github.com/hyprwm/Hyprland/discussions/13238  (disable/re-enable monitor misbehaves)
+hl.bind(mainMod .. " + CTRL + Y", hl.dsp.exec_cmd("brightnessctl -d intel_backlight --restore"))
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.exec_cmd("brightnessctl -d intel_backlight --save set 0"))
 hl.bind(mainMod .. " + N",         hl.dsp.exec_cmd("hyprshutdown"))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"))
 hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"))

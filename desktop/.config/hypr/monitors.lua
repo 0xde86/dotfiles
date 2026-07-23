@@ -48,23 +48,15 @@ end
 -- Anything unexpected (a projector, say) still gets a usable default.
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
 
--- Every known output starts enabled: on startup everything is on. Monitors are
--- no longer switched automatically based on what is docked -- toggle the
--- internal panel by hand with SUPER+CTRL+Y (on) / SUPER+CTRL+H (off), bound in
--- keybinds.lua.
+-- Every known output starts enabled and stays enabled: on startup everything is
+-- on, and the internal panel is never disabled at runtime. Disabling eDP-1 (its
+-- only output on the Intel GPU) makes Hyprland tear down/rebuild that GPU's
+-- renderer and wake to a frozen frame -- a known multi-GPU bug that DPMS hits too
+-- and that nothing in-session recovers. So "turning off" the internal panel is
+-- done purely by dimming its backlight (SUPER+CTRL+H off / SUPER+CTRL+Y on, bound
+-- in keybinds.lua), which leaves the DRM output untouched.
 for _, output in ipairs(outputs) do
     configure(output, true)
 end
 
 apply_workspaces()
-
-return {
-    enable_internal = function()
-        configure(INTERNAL, true)
-        apply_workspaces()
-    end,
-    disable_internal = function()
-        configure(INTERNAL, false)
-        apply_workspaces()
-    end,
-}

@@ -10,6 +10,7 @@ sudo pacman -S zed helix neovim vscodium lldb hugo graphviz docker
 sudo pacman -S flatpak
 sudo pacman -S lua-language-server
 sudo pacman -S lcov
+sudo pacman -S brightnessctl
 sudo pacman -S xorg-xhost
 
 # hyprland
