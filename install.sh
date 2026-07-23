@@ -21,6 +21,9 @@ sudo pacman -S hyprlauncher hyprpaper hyprpolkitagent waybar hyprshot
 sudo pacman -S hyprpicker
 sudo pacman -S swaync # remove dunst if needed
 sudo pacman -S qt5-wayland qt6-wayland
+# auto-mount
+sudo pacman -S udiskie
+
 
 # sudo pacman -S dnscrypt-proxy
 # systemctl enable dnscrypt-proxy.service

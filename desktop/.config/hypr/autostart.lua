@@ -7,6 +7,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("waybar & hyprpaper & hypridle") -- & swaync
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
     hl.exec_cmd("powerprofilesctl set " .. power_profile.power_mode)
+    hl.exec_cmd("udiskie --automount --notify")
 
     hl.exec_cmd(programs.terminal, { workspace = "1 silent" })
     hl.exec_cmd(programs.browser,  { workspace = "2 silent" })
