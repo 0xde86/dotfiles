@@ -20,6 +20,8 @@ window#waybar > box {
     transition-property: background-color;
     transition-duration: 0.1s;
     border-radius: 6px;
+    /* Match Hyprland's inactive window border: border_size = 2, rgba(838ba7aa). */
+    border: 2px solid alpha(@overlay1, 0.333);
 }
 
 button {
@@ -41,15 +43,15 @@ button:hover {
 }
 
 #workspaces button.focused {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: alpha(@crust, 0.9);
     color: @rosewater;
-    border-top: 2px solid @rosewater;
+    /* border-top: 2px solid @rosewater; */
 }
 
 #workspaces button.active {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: alpha(@crust, 0.9);
     color: @rosewater;
-    border-top: 2px solid @rosewater;
+    /* border-top: 2px solid @rosewater; */
 }
 
 #workspaces button.urgent {
@@ -81,32 +83,32 @@ button:hover {
 
 #power-profiles-daemon {
     color: @red;
-    border-bottom: 2px solid @red;
+    /* border-bottom: 2px solid @red; */
 }
 
 #bluetooth {
     color: @lavender;
-    border-bottom: 2px solid @lavender;
+    /* border-bottom: 2px solid @lavender; */
 }
 
 #clock {
     color: @maroon;
-    border-bottom: 2px solid @maroon;
+    /* border-bottom: 2px solid @maroon; */
 }
 
 #clock.date {
     color: @mauve;
-    border-bottom: 2px solid @mauve;
+    /* border-bottom: 2px solid @mauve; */
 }
 
 #pulseaudio {
     color: @blue;
-    border-bottom: 2px solid @blue;
+    /* border-bottom: 2px solid @blue; */
 }
 
 #network {
     color: @yellow;
-    border-bottom: 2px solid @yellow;
+    /* border-bottom: 2px solid @yellow; */
 }
 
 #idle_inhibitor {
@@ -120,7 +122,7 @@ button:hover {
 
 #battery {
     color: @green;
-    border-bottom: 2px solid @green;
+    /* border-bottom: 2px solid @green; */
 }
 
 /* If workspaces is the leftmost module, omit left margin */
