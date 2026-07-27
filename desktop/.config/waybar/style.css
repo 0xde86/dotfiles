@@ -21,7 +21,7 @@ window#waybar > box {
     transition-duration: 0.1s;
     border-radius: 6px;
     /* Match Hyprland's inactive window border: border_size = 2, rgba(838ba7aa). */
-    border: 2px solid alpha(@overlay1, 0.333);
+    border: 2px solid alpha(@overlay1, 0.2);
 }
 
 button {
