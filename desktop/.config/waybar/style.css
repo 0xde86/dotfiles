@@ -9,17 +9,17 @@
 
 window#waybar {
     background: transparent;
-    background-color: alpha(@crust, 0.7);
     color: @overlay1;
-    transition-property: background-color;
-    transition-duration: 0.1s;
     /* border-bottom: 1px solid @overlay1; */
 }
 
-#window {
-    margin: 8px;
-    padding-left: 8;
-    padding-right: 8;
+/* GTK3 ignores border-radius on the toplevel window, so draw the bar
+   background (and rounding) on the inner content box instead. */
+window#waybar > box {
+    background-color: alpha(@crust, 0.7);
+    transition-property: background-color;
+    transition-duration: 0.1s;
+    border-radius: 6px;
 }
 
 button {
@@ -125,10 +125,10 @@ button:hover {
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left>widget:first-child>#workspaces {
-    margin-left: 0;
+    margin-left: 6px;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right>widget:last-child>#workspaces {
-    margin-right: 0;
+    margin-right: 6px;
 }
