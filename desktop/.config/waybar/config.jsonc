@@ -1,5 +1,11 @@
 {
   "position": "top",
+  // Inset the bar from the screen edges to match Hyprland's gaps_out (4px).
+  // Bottom is 0 — the gap to the windows below is provided by gaps_out.
+  "margin-top": 4,
+  "margin-left": 4,
+  "margin-right": 4,
+  "margin-bottom": 0,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
   "modules-right": ["bluetooth", "pulseaudio", "battery", "network", "clock", "power-profiles-daemon"],

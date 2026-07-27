@@ -16,7 +16,6 @@
       "Read(./secrets/**)"
     ]
   },
-  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
@@ -39,5 +38,6 @@
     }
   },
   "effortLevel": "xhigh",
-  "theme": "auto"
+  "theme": "auto",
+  "model": "opus"
 }
