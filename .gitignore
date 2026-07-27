@@ -3,6 +3,9 @@ dev/.config/VSCodium/*
 dev/.config/VSCodium/User/*
 !dev/.config/VSCodium/User/settings.json
 
+dev/.config/alire/indexes/*
+!dev/.config/alire/indexes/providers.toml
+
 claude/.claude/*
 !claude/.claude/keybindings.json
 !claude/.claude/settings.json

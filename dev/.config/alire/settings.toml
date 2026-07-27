@@ -1,0 +1,11 @@
+[index]
+last_update = 287015061
+[toolchain]
+assistant = false
+[toolchain.external]
+gnat = false
+gprbuild = false
+[toolchain.use]
+gnat = "gnat_native=16.1.0"
+gprbuild = "gprbuild=26.0.1"
+
