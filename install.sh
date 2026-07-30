@@ -13,6 +13,7 @@ sudo pacman -S lcov
 sudo pacman -S brightnessctl
 sudo pacman -S xorg-xhost
 sudo pacman -S gvfs-mtp
+sudo pacman -S thunar
 
 # hyprland
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hypridle

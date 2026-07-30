@@ -1,5 +1,6 @@
 {
   "Lua.workspace.library": [
     "/usr/share/hypr/stubs"
-  ]
+  ],
+  "sarif-viewer.connectToGithubCodeScanning": "off"
 }

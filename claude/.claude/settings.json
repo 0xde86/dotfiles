@@ -16,6 +16,7 @@
       "Read(./secrets/**)"
     ]
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
@@ -25,7 +26,16 @@
     "code-review@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "postman@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "adacore@adacore-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "adacore-skills": {
+      "source": {
+        "source": "github",
+        "repo": "AdaCore/skills"
+      }
+    }
   },
   "sandbox": {
     "enabled": true,
@@ -38,6 +48,6 @@
     }
   },
   "effortLevel": "xhigh",
-  "theme": "auto",
-  "model": "opus"
+  "tui": "fullscreen",
+  "theme": "auto"
 }
