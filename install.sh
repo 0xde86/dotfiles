@@ -12,6 +12,7 @@ sudo pacman -S lua-language-server
 sudo pacman -S lcov
 sudo pacman -S brightnessctl
 sudo pacman -S xorg-xhost
+sudo pacman -S gvfs-mtp
 
 # hyprland
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hypridle
