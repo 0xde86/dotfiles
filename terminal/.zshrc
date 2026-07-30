@@ -36,7 +36,8 @@ export PATH="$HOME/.tinygo/tinygo/bin:$PATH"
 export PATH="$HOME/flutter/bin:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$PATH"
 export PATH="$HOME/Android/Sdk/emulator:$PATH"
 export ANDROID_HOME="$HOME/Android/Sdk"
-export PATH="/home/vir/.alire/bin:$PATH"
+export PATH="$HOME/.alire/bin:$PATH"
+export PATH="$HOME/.als/bin:$PATH"
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

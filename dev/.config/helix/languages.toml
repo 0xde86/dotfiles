@@ -57,3 +57,46 @@ args = ["serve"]
 [[language]]
 name = "markdown"
 language-servers = ["codebook"]
+
+
+# --- Ada ---------------------------------------------------------------------
+# Formatting is done by ALS over LSP (it wraps GNATformat), so no external
+# formatter command is needed. Debugging uses GDB's own DAP interpreter,
+# which is the only adapter with real Ada type/array support.
+
+[[language]]
+name = "ada"
+auto-format = true
+language-servers = ["ada-language-server"]
+
+[language.debugger]
+name = "gdb"
+transport = "stdio"
+command = "gdb"
+args = ["--interpreter=dap"]
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [{ name = "binary", completion = "filename" }]
+args = { program = "{0}" }
+
+[[language.debugger.templates]]
+name = "binary (stop at main)"
+request = "launch"
+completion = [{ name = "binary", completion = "filename" }]
+args = { program = "{0}", stopAtBeginningOfMainSubprogram = true }
+
+[[language.debugger.templates]]
+name = "attach"
+request = "attach"
+completion = [{ name = "pid" }]
+args = { pid = "{0}" }
+
+[language-server.ada-language-server]
+command = "ada_language_server"
+
+# Same server handles .gpr files.
+[[language]]
+name = "gpr"
+language-servers = ["ada-language-server"]
