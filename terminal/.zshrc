@@ -24,7 +24,8 @@ alias z="zoxide"
 alias zed="zeditor"
 alias frbc="flutter_rust_bridge_codegen"
 alias rpiimager='sudo QT_QPA_PLATFORM=wayland WAYLAND_DISPLAY="$WAYLAND_DISPLAY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" rpi-imager'
-alias tinycode='tinygo-edit --editor codium --target pico2' 
+alias tinycode='tinygo-edit --editor codium --target pico2'
+alias ahx='alr exec -- helix .'
 
 export EDITOR="helix"
 export CHROME_EXECUTABLE="brave"
