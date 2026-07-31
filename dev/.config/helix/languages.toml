@@ -67,6 +67,7 @@ language-servers = ["codebook"]
 [[language]]
 name = "ada"
 auto-format = true
+indent = { tab-width = 3, unit = "   " }
 language-servers = ["ada-language-server"]
 
 [language.debugger]
