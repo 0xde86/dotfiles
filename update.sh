@@ -39,3 +39,6 @@ make
 
 printf "\n ────────── Updating claude code ────────── \n\n"
 claude update
+
+printf "\n ────────── Updating codex ────────── \n\n"
+codex update

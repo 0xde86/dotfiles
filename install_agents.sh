@@ -15,3 +15,6 @@ npm install -g @anthropic-ai/sandbox-runtime
 # 2. Add to ~/.claude/settings.json
 # jq '. + {"statusLine": {"type": "command", "command": "~/.claude/statusline.sh", "padding": 0}}' \
 #   ~/.claude/settings.json > /tmp/settings.json && mv /tmp/settings.json ~/.claude/settings.json
+
+# install openai-codex
+npm install -g @openai/codex
