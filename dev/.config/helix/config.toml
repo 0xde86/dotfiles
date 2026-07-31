@@ -28,6 +28,13 @@ render = true
 "C-." = ":open ~/.config/helix/config.toml"
 "C-," = ":config-reload"
 
+[keys.normal.space.r]
+a = ":sh alr run"                 # Ada / Alire
+r = ":sh cargo run"               # Rust
+g = ":sh go run ."                # Go
+j = ":sh node \"%{buffer_name}\"" # JavaScript
+m = ":sh make run"                # Make
+
 [keys.select]
 C-z = "undo"
 C-r = "redo"
