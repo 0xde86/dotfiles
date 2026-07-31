@@ -25,7 +25,6 @@ alias zed="zeditor"
 alias frbc="flutter_rust_bridge_codegen"
 alias rpiimager='sudo QT_QPA_PLATFORM=wayland WAYLAND_DISPLAY="$WAYLAND_DISPLAY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" rpi-imager'
 alias tinycode='tinygo-edit --editor codium --target pico2'
-alias ahx='alr exec -- helix .'
 
 export EDITOR="helix"
 export CHROME_EXECUTABLE="brave"
@@ -74,6 +73,10 @@ function clmax() {
 	export CLAUDE_CONFIG_DIR="$HOME/.claude-max"
 	rm ~/.claude-max/settings.json
 	cp ~/.claude/settings.json ~/.claude-max/
+}
+
+function ahx() {
+	alr exec -- helix "$@"
 }
 
 eval "$(ssh-agent -s)" > /dev/null
