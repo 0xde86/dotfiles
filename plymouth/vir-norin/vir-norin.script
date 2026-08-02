@@ -118,7 +118,7 @@ for (i = 0; i < handle_n; i++) {
 // set up further below (Plymouth script has no line-drawing primitive).
 
 // ---- subtitle --------------------------------------------------------
-sub_img = Image.Text("ACCESS NODE :: NEW YORK", 0.2, 1.0, 0.4, 1,
+sub_img = Image.Text("ACCESS NODE :: EARTH", 0.2, 1.0, 0.4, 1,
                      "DejaVu Sans Mono 15");
 sub = Sprite(sub_img);
 place(sub, (sw - sub_img.GetWidth()) / 2, logo_y + logo_h + 8, 10);
