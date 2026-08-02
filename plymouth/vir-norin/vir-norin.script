@@ -1,0 +1,278 @@
+// =====================================================================
+//  VIR NORIN  ::  Plymouth boot splash  (script module)
+//  Green CRT / Hackers-style splash ported from the web page.
+//  Background grid + scanlines, gradient logo, green progress bar,
+//  and POST-style detail lines that stream in during boot.
+// =====================================================================
+
+// ---- screen ----------------------------------------------------------
+// Use the active Plymouth window's geometry. On multi-display setups the
+// window origin can be non-zero, so every sprite is placed relative to it.
+sw = Window.GetWidth();
+sh = Window.GetHeight();
+ox = Window.GetX();
+oy = Window.GetY();
+
+Window.SetBackgroundTopColor(0.008, 0.039, 0.020);     // #020a05
+Window.SetBackgroundBottomColor(0.004, 0.020, 0.012);
+
+// ---- helpers ---------------------------------------------------------
+fun place(sprite, x, y, z) {
+    sprite.SetX(ox + x);
+    sprite.SetY(oy + y);
+    sprite.SetZ(z);
+    return sprite;
+}
+
+// ---- background (grid) ----------------------------------------------
+bg_img = Image("background.png").Scale(sw, sh);
+bg = Sprite(bg_img);
+place(bg, 0, 0, 0);
+
+// ---- handle "VIR NORIN": drawn as TEXT, effects applied in-script -----
+// (no logo.png) gradient = one sprite per character coloured along the
+// gradient; glow = offset / scaled semi-transparent copies stacked behind.
+
+handle_text[0] = "V"; handle_text[1] = "I"; handle_text[2] = "R";
+handle_text[3] = " ";
+handle_text[4] = "N"; handle_text[5] = "O"; handle_text[6] = "R";
+handle_text[7] = "I"; handle_text[8] = "N";
+handle_n = 9;
+
+// gradient stops (rgb 0..1): #c6ff00 chartreuse -> #39ff88 -> #00cf6a emerald
+g0r = 0.776; g0g = 1.000; g0b = 0.000;
+g1r = 0.224; g1g = 1.000; g1b = 0.533;
+g2r = 0.000; g2g = 0.812; g2b = 0.416;
+
+// choose a font size that fits the screen width, then re-fit if too wide
+hfs = Math.Int(sh / 8);
+hfont = "DejaVu Sans Mono " + hfs;
+probe = Image.Text("VIR NORIN", 0.2, 1.0, 0.4, 1, hfont);
+full_w = probe.GetWidth();
+max_w = sw * 0.9;
+if (full_w > max_w) {
+    hfs = Math.Int(hfs * max_w / full_w);
+    hfont = "DejaVu Sans Mono " + hfs;
+    probe = Image.Text("VIR NORIN", 0.2, 1.0, 0.4, 1, hfont);
+    full_w = probe.GetWidth();
+}
+handle_h = probe.GetHeight();
+logo_h = handle_h;                 // used later for subtitle / welcome
+cell_w = full_w / handle_n;
+logo_y = sh * 0.20;
+handle_x = (sw - full_w) / 2;
+
+// ---- GLOW: stack copies of the whole word behind the sharp text -------
+glow_full = Image.Text("VIR NORIN", 0.2, 1.0, 0.4, 1, hfont);   // green
+gi = 0;
+// soft wide halo (scaled up a touch)
+halo = glow_full.Scale(full_w * 1.08, handle_h * 1.08);
+glow_sprites[gi] = Sprite(halo);
+glow_sprites[gi].SetX(ox + handle_x - full_w * 0.04);
+glow_sprites[gi].SetY(oy + logo_y - handle_h * 0.04);
+glow_sprites[gi].SetZ(7);
+glow_sprites[gi].SetOpacity(0.22);
+gi++;
+// two rings of offset copies = fake bloom
+off_x[0] = 1;  off_y[0] = 0;   off_x[1] = -1; off_y[1] = 0;
+off_x[2] = 0;  off_y[2] = 1;   off_x[3] = 0;  off_y[3] = -1;
+off_x[4] = 1;  off_y[4] = 1;   off_x[5] = 1;  off_y[5] = -1;
+off_x[6] = -1; off_y[6] = 1;   off_x[7] = -1; off_y[7] = -1;
+ring_r[0] = 3; ring_o[0] = 0.16;
+ring_r[1] = 6; ring_o[1] = 0.09;
+for (rr = 0; rr < 2; rr++) {
+    for (d = 0; d < 8; d++) {
+        glow_sprites[gi] = Sprite(glow_full);
+        glow_sprites[gi].SetX(ox + handle_x + off_x[d] * ring_r[rr]);
+        glow_sprites[gi].SetY(oy + logo_y + off_y[d] * ring_r[rr]);
+        glow_sprites[gi].SetZ(8);
+        glow_sprites[gi].SetOpacity(ring_o[rr]);
+        gi++;
+    }
+}
+
+// ---- GRADIENT TEXT: one coloured sprite per character -----------------
+for (i = 0; i < handle_n; i++) {
+    if (handle_text[i] != " ") {
+        t = i / (handle_n - 1);
+        if (t < 0.5) {
+            k = t / 0.5;
+            cr = g0r + (g1r - g0r) * k;
+            cg = g0g + (g1g - g0g) * k;
+            cb = g0b + (g1b - g0b) * k;
+        } else {
+            k = (t - 0.5) / 0.5;
+            cr = g1r + (g2r - g1r) * k;
+            cg = g1g + (g2g - g1g) * k;
+            cb = g1b + (g2b - g1b) * k;
+        }
+        ch = Image.Text(handle_text[i], cr, cg, cb, 1, hfont);
+        cx = handle_x + i * cell_w + (cell_w - ch.GetWidth()) / 2;
+        char_sprites[i] = Sprite(ch);
+        char_sprites[i].SetX(ox + cx);
+        char_sprites[i].SetY(oy + logo_y);
+        char_sprites[i].SetZ(10);
+    }
+}
+// CRT scanlines over the handle come from the full-screen scanlines overlay
+// set up further below (Plymouth script has no line-drawing primitive).
+
+// ---- subtitle --------------------------------------------------------
+sub_img = Image.Text("ACCESS NODE :: NEW YORK", 0.2, 1.0, 0.4, 1,
+                     "DejaVu Sans Mono 15");
+sub = Sprite(sub_img);
+place(sub, (sw - sub_img.GetWidth()) / 2, logo_y + logo_h + 8, 10);
+
+// ---- progress bar ----------------------------------------------------
+bar_box_img  = Image("bar_box.png");
+bar_fill_img = Image("bar_fill.png");
+bar_full_w = bar_fill_img.GetWidth();        // 620
+bar_h      = bar_fill_img.GetHeight();        // 16
+bar_x = (sw - bar_box_img.GetWidth()) / 2;
+bar_y = sh * 0.80;
+
+bar_box = Sprite(bar_box_img);
+place(bar_box, bar_x, bar_y, 11);
+
+bar_fill = Sprite();                          // image set on progress
+fill_x = bar_x + 4;
+fill_y = bar_y + 4;
+
+// ---- phase label + percent ------------------------------------------
+phase_sprite = Sprite();
+pct_sprite   = Sprite();
+last_pct = -1;
+last_phase = "";
+
+fun set_phase(txt) {
+    if (txt == last_phase) return;
+    last_phase = txt;
+    img = Image.Text(txt, 0.2, 1.0, 0.4, 1, "DejaVu Sans Mono 14");
+    phase_sprite.SetImage(img);
+    place(phase_sprite, bar_x, bar_y - 26, 11);
+}
+
+fun set_pct(p) {
+    v = Math.Int(p * 100);
+    if (v == last_pct) return;
+    last_pct = v;
+    img = Image.Text(v + "%", 0.67, 1.0, 0.73, 1, "DejaVu Sans Mono 14");
+    pct_sprite.SetImage(img);
+    place(pct_sprite, bar_x + bar_box_img.GetWidth() - img.GetWidth(),
+          bar_y - 26, 11);
+}
+
+// ---- POST-style detail lines (revealed during loading) --------------
+post_text[0] = "> VIR/OS BIOS v4.0 .......... OK";       post_thr[0] = 0.02;
+post_text[1] = "> NEURAL CORE ............... OK";       post_thr[1] = 0.14;
+post_text[2] = "> CPU: QUANTUM RISC ......... OK";       post_thr[2] = 0.27;
+post_text[3] = "> VIDEO: CYBERDELIA ......... OK";       post_thr[3] = 0.39;
+post_text[4] = "> MODEM: 56k ................ CARRIER";  post_thr[4] = 0.52;
+post_text[5] = "> CRYPTO: BLOWFISH .......... OK";       post_thr[5] = 0.64;
+post_text[6] = "> LOAD: /usr/vir/profile .... ONLINE";   post_thr[6] = 0.77;
+post_text[7] = "> HANDLE: VIR NORIN ......... AUTH";      post_thr[7] = 0.90;
+post_count = 8;
+
+post_phase[0] = "POWER-ON";    post_phase[1] = "CORE TEST";
+post_phase[2] = "CORE TEST";   post_phase[3] = "VIDEO INIT";
+post_phase[4] = "LINKING";     post_phase[5] = "DECRYPTING";
+post_phase[6] = "MOUNTING";    post_phase[7] = "VERIFYING";
+
+post_log_x = sw * 0.30;
+post_log_y = sh * 0.40;
+post_line_h = 28;
+post_shown = 0;
+
+fun reveal_posts(progress) {
+    while (post_shown < post_count) {
+        if (post_thr[post_shown] > progress) break;
+        i = post_shown;
+        img = Image.Text(post_text[i], 0.2, 1.0, 0.4, 1,
+                         "DejaVu Sans Mono 14");
+        s = Sprite(img);
+        place(s, post_log_x, post_log_y + i * post_line_h, 10);
+        post_lines[i] = s;
+        set_phase(post_phase[i]);
+        post_shown++;
+    }
+}
+
+// ---- boot progress callback -----------------------------------------
+fun on_progress(duration, progress) {
+    if (progress < 0) progress = 0;
+    if (progress > 1) progress = 1;
+
+    w = bar_full_w * progress;
+    if (w < 1) w = 1;
+    bar_fill.SetImage(bar_fill_img.Scale(w, bar_h));
+    place(bar_fill, fill_x, fill_y, 12);
+
+    set_pct(progress);
+    reveal_posts(progress);
+
+    if (progress >= 1.0) {
+        set_phase("ACCESS GRANTED");
+        if (!welcomed) {
+            wimg = Image.Text("WELCOME BACK, VIR NORIN", 0.67, 1.0, 0.73, 1,
+                              "DejaVu Sans Mono 16");
+            sub.SetImage(wimg);
+            place(sub, (sw - wimg.GetWidth()) / 2, logo_y + logo_h + 8, 10);
+            welcomed = 1;
+        }
+    }
+}
+welcomed = 0;
+Plymouth.SetBootProgressFunction(on_progress);
+
+// ---- CRT scanline flicker (gentle) ----------------------------------
+scan_img = Image("scanlines.png").Scale(sw, sh);
+scan = Sprite(scan_img);
+place(scan, 0, 0, 100);
+scan.SetOpacity(0.55);
+tick = 0;
+fun on_refresh() {
+    tick++;
+    // subtle phosphor flicker on the scanline overlay
+    scan.SetOpacity(0.48 + 0.10 * Math.Sin(tick / 6));
+}
+Plymouth.SetRefreshFunction(on_refresh);
+
+// ---- messages (fsck, etc.) ------------------------------------------
+message_sprite = Sprite();
+fun on_message(text) {
+    img = Image.Text(text, 0.67, 1.0, 0.73, 1, "DejaVu Sans Mono 14");
+    message_sprite.SetImage(img);
+    place(message_sprite, (sw - img.GetWidth()) / 2, sh * 0.90, 20);
+}
+fun on_hide_message(text) { message_sprite.SetImage(Image.Text("")); }
+Plymouth.SetMessageFunction(on_message);
+Plymouth.SetDisplayMessageFunction(on_message);
+Plymouth.SetHideMessageFunction(on_hide_message);
+
+// ---- password prompt (LUKS / disk encryption) -----------------------
+prompt_sprite = Sprite();
+bullet_sprite = Sprite();
+fun on_password(prompt, bullets) {
+    pimg = Image.Text(prompt, 0.2, 1.0, 0.4, 1, "DejaVu Sans Mono 16");
+    prompt_sprite.SetImage(pimg);
+    place(prompt_sprite, (sw - pimg.GetWidth()) / 2, sh * 0.62, 20);
+
+    dots = "";
+    for (i = 0; i < bullets; i++) dots += "*";
+    bimg = Image.Text(dots, 0.67, 1.0, 0.73, 1, "DejaVu Sans Mono 22");
+    bullet_sprite.SetImage(bimg);
+    place(bullet_sprite, (sw - bimg.GetWidth()) / 2, sh * 0.62 + 30, 20);
+}
+fun on_normal() {
+    prompt_sprite.SetImage(Image.Text(""));
+    bullet_sprite.SetImage(Image.Text(""));
+}
+Plymouth.SetDisplayPasswordFunction(on_password);
+Plymouth.SetDisplayNormalFunction(on_normal);
+
+// ---- quit ------------------------------------------------------------
+fun on_quit() {
+    bar_fill.SetImage(bar_fill_img.Scale(bar_full_w, bar_h));
+    set_phase("ACCESS GRANTED");
+}
+Plymouth.SetQuitFunction(on_quit);

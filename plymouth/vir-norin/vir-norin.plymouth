@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Vir Norin
+Description=Hackers-style green CRT boot splash (perspective grid, gradient handle, streaming POST log)
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/vir-norin
+ScriptFile=/usr/share/plymouth/themes/vir-norin/vir-norin.script
