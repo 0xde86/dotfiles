@@ -76,6 +76,14 @@ avdmanager create avd -n Pixel_6 -k "system-images;android-33;google_apis;x86_64
 flutter doctor -v
 ```
 
+## Use ly as display manager
+
+```bash
+systemctl disable cosmic-greeter-daemon.service
+systemctl disable cosmic-greeter.service
+systemctl enable ly@tty2.service
+```
+
 ## Raspberry Pi dev
 
 1. Install "Raspberry Pi Pico" extention for VSCode
