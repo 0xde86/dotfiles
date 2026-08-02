@@ -17,6 +17,11 @@ gm up
 printf "\n ────────── Updating Go software ────────── \n\n"
 gup update
 
+printf "\n ────────── Updating helix ────────── \n\n"
+cd ~/.local/src/helix
+git pull --ff-only
+cargo install --path helix-term --locked
+
 printf "\n ────────── Updating bun ────────── \n\n"
 bun upgrade
 

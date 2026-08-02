@@ -19,16 +19,16 @@ alias vi="nvim"
 alias vim="nvim"
 alias cat="bat"
 alias code="codium"
-alias hx="helix"
 alias z="zoxide"
 alias zed="zeditor"
 alias frbc="flutter_rust_bridge_codegen"
 alias rpiimager='sudo QT_QPA_PLATFORM=wayland WAYLAND_DISPLAY="$WAYLAND_DISPLAY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" rpi-imager'
 alias tinycode='tinygo-edit --editor codium --target pico2'
 
-export EDITOR="helix"
-export VISUAL="helix"
-export SUDO_EDITOR="helix"
+export EDITOR="hx"
+export VISUAL="hx"
+export SUDO_EDITOR="hx"
+export HELIX_RUNTIME="$HOME/.local/src/helix/runtime"
 export CHROME_EXECUTABLE="brave"
 export PATH="$PATH:$HOME/bin"
 export PATH=$HOME/.local/bin:$PATH
