@@ -7,6 +7,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + T",         hl.dsp.exec_cmd(programs.terminal))
 hl.bind(mainMod .. " + return",    hl.dsp.exec_cmd(programs.terminal))
+hl.bind(mainMod .. " + grave",     hl.dsp.exec_cmd("kitten quick-access-terminal"))
 hl.bind(mainMod .. " + B",         hl.dsp.exec_cmd(programs.browser))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(programs.p_browser))
 hl.bind(mainMod .. " + E",         hl.dsp.exec_cmd(programs.fileManager))
