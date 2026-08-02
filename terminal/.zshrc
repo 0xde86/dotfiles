@@ -27,6 +27,8 @@ alias rpiimager='sudo QT_QPA_PLATFORM=wayland WAYLAND_DISPLAY="$WAYLAND_DISPLAY"
 alias tinycode='tinygo-edit --editor codium --target pico2'
 
 export EDITOR="helix"
+export VISUAL="helix"
+export SUDO_EDITOR="helix"
 export CHROME_EXECUTABLE="brave"
 export PATH="$PATH:$HOME/bin"
 export PATH=$HOME/.local/bin:$PATH
