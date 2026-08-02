@@ -41,6 +41,11 @@ export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH="$HOME/.alire/bin:$PATH"
 export PATH="$HOME/.als/bin:$PATH"
 
+export SWIFTLY_HOME_DIR="$HOME/.swiftly"
+export SWIFTLY_BIN_DIR="$SWIFTLY_HOME_DIR/bin"
+export SWIFTLY_TOOLCHAINS_DIR="$SWIFTLY_HOME_DIR/toolchains"
+[ -s "$SWIFTLY_HOME_DIR/env.sh" ] && source "$SWIFTLY_HOME_DIR/env.sh"
+
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

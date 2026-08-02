@@ -20,6 +20,14 @@ gup update
 printf "\n ────────── Updating bun ────────── \n\n"
 bun upgrade
 
+printf "\n ────────── Updating Swiftly & Swift toolchain ────────── \n\n"
+export SWIFTLY_HOME_DIR="$HOME/.swiftly"
+export SWIFTLY_BIN_DIR="$SWIFTLY_HOME_DIR/bin"
+export SWIFTLY_TOOLCHAINS_DIR="$SWIFTLY_HOME_DIR/toolchains"
+. "$SWIFTLY_HOME_DIR/env.sh"
+swiftly self-update
+swiftly update latest
+
 printf "\n ────────── Updating zsh plugins ────────── \n\n"
 cd ~/.zsh/zsh-autosuggestions
 git pull
