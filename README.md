@@ -63,6 +63,34 @@ options edns0
 ```
 And after a reboot it should be working perfectly. Test your connection with 1.1.1.1/help (easy to remember) or dnsleaktest.com (thorough)
 
+## Fix plymouth (multi-display setup)
+
+Edit `/etc/plymouth/plymouthd.conf`:
+
+```ini
+  [Daemon]
+  Theme=arch-wireframe
+  DeviceScale=2
+```
+
+If the size becomes correct but the animation is offset, patch these lines in `/usr/share/plymouth/themes/arch-wireframe/animated-boot.script`:
+```
+  flyingman_sprite.SetX(
+      Window.GetX() + Window.GetWidth() / 2
+      - flyingman_image[1].GetWidth() / 2
+  );
+  flyingman_sprite.SetY(
+      Window.GetY() + Window.GetHeight() / 2
+      - flyingman_image[1].GetHeight() / 2
+  );
+```
+
+Then rebuild every CachyOS initramfs:
+```bash
+  sudo mkinitcpio -P
+  sudo reboot
+```
+
 ## Download android SDK
 
 Download from: https://developer.android.com/studio#command-line-tools-only
