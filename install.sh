@@ -69,6 +69,9 @@ if echo "7693b77cef70814e277b6199b699c32c5229457641f811da9f70d2f51fbd89a3 theme.
 	ln -sf "${THEME_DIR}/gtk-3.0/assets" ~/.config/gtk-3.0/assets
 	ln -sf "${THEME_DIR}/gtk-3.0/gtk.css" ~/.config/gtk-3.0/gtk.css
 	ln -sf "${THEME_DIR}/gtk-3.0/gtk-dark.css" ~/.config/gtk-3.0/gtk-dark.css
+
+	gsettings set org.gnome.desktop.interface gtk-theme \
+    'catppuccin-frappe-rosewater-standard+default'
 else
 	echo "theme.zip checksum mismatch, skipping GTK theme install" >&2
 fi
