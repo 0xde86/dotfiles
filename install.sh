@@ -16,8 +16,6 @@ sudo pacman -S gvfs-mtp
 sudo pacman -S thunar
 sudo pacman -S ly
 sudo pacman -S brave-bin
-sudo pacman -S --needed curl gnupg patchelf util-linux-libs libxml2-legacy ncurses libedit sqlite zlib-ng-compat
-
 # hyprland
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hypridle
 sudo pacman -S swaylock hyprshutdown nwg-look
