@@ -15,6 +15,7 @@ sudo pacman -S xorg-xhost
 sudo pacman -S gvfs-mtp
 sudo pacman -S thunar
 sudo pacman -S ly
+sudo pacman -S brave-bin
 
 # hyprland
 sudo pacman -S hyprland xdg-desktop-portal-hyprland hyprlock hypridle
