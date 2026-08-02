@@ -34,8 +34,8 @@
     "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
-    "on-click": "cosmic-settings network",
-    "on-click-right": "hyprctl dispatch exec nm-connection-editor"
+    "on-click-right": "cosmic-settings network",
+    "on-click": "hyprctl dispatch exec nm-connection-editor"
   },
   "pulseaudio": {
       "format": "{icon}  {volume}%",
@@ -43,8 +43,8 @@
       "format-icons": {
           "default": ["", "", " "]
       },
-      "on-click": "cosmic-settings sound",
-      "on-click-right": "pavucontrol"
+      "on-click-right": "cosmic-settings sound",
+      "on-click": "pavucontrol"
   },
   "bluetooth": {
 		"format": "",
@@ -52,8 +52,8 @@
 		"format-off": "󰂲",
 		"format-disabled": "󰂲",
 		"tooltip-format": "{status}",
-		"on-click-right": "blueman-manager",
-    "on-click": "cosmic-settings bluetooth",
+		"on-click": "blueman-manager",
+    "on-click-right": "cosmic-settings bluetooth",
 		"tooltip-format-connected": "Bluetooth: {device_alias}"
 	},
   // "cpu": {
