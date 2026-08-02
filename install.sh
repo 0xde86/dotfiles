@@ -89,6 +89,7 @@ rm -rf ~/.config/cosmic
 rm -rf ~/.local/state/cosmic
 rm -rf ~/.local/state/cosmic-comp
 stow desktop
+kitten desktop-ui enable-portal
 
 chsh -s $(which zsh)
 
