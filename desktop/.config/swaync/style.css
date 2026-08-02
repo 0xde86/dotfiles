@@ -1,0 +1,54 @@
+/* Catppuccin Frappe overrides for SwayNotificationCenter. */
+:root {
+  --cc-bg: rgba(35, 38, 52, 0.94); /* crust */
+  --noti-border-color: rgba(131, 139, 167, 0.35); /* overlay1 */
+
+  --noti-bg: 48, 52, 70; /* base */
+  --noti-bg-alpha: 0.94;
+  --noti-bg-darker: rgb(41, 44, 60); /* mantle */
+  --noti-bg-hover: rgb(65, 69, 89); /* surface0 */
+  --noti-bg-focus: rgba(140, 170, 238, 0.20); /* blue */
+
+  --noti-close-bg: rgb(65, 69, 89); /* surface0 */
+  --noti-close-bg-hover: rgb(81, 87, 109); /* surface1 */
+
+  --noti-bg-alt: rgb(41, 44, 60); /* mantle */
+  --text-color: rgb(198, 208, 245); /* text */
+  --text-color-disabled: rgb(131, 139, 167); /* overlay1 */
+  --bg-selected: rgb(140, 170, 238); /* blue */
+
+  --border: 2px solid var(--noti-border-color);
+  --border-radius: 6px;
+  --notification-shadow: 0 4px 16px rgba(35, 38, 52, 0.55);
+}
+
+* {
+  font-family: "JetBrainsMonoNL Nerd Font";
+}
+
+.control-center {
+  border: var(--border);
+}
+
+.notification-row .notification-background .notification.critical {
+  border-color: #e78284; /* red */
+}
+
+.widget-title > button,
+.notification-action > button {
+  background: #414559; /* surface0 */
+  color: #c6d0f5; /* text */
+}
+
+.widget-title > button:hover,
+.notification-action > button:hover {
+  background: #51576d; /* surface1 */
+}
+
+.widget-dnd switch:checked {
+  background: #8caaee; /* blue */
+}
+
+progressbar progress {
+  background: #8caaee; /* blue */
+}
