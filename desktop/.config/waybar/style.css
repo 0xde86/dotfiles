@@ -1,7 +1,8 @@
 @import "frappe.css";
 
 * {
-    font-family: "JetBrainsMonoNL Nerd Font Thin";
+    /* Nerd Fonts 3.5 exposes weights separately from the font family. */
+    font-family: "JetBrainsMonoNL Nerd Font";
     font-size: 14px;
     min-height: 0;
     font-weight: normal;
@@ -75,8 +76,8 @@ button:hover {
 #scratchpad {
   margin-top: 2px;
   margin-bottom: 2px;
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
   padding-left: 4px;
   padding-right: 4px;
 }
