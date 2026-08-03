@@ -26,7 +26,9 @@
     "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon}</span>  {time}",
     "format-full": "<span size='13000' foreground='#B1E3AD'></span>  {capacity}%",
     "format-icons": ["", "", "", "", ""],
-    "tooltip-format": "{time}"
+    "tooltip-format": "{time}",
+    "on-click": "kitty --override confirm_os_window_close=0 --title 'System Monitor' btop",
+    "on-click-right": "kitty --override confirm_os_window_close=0 --title Battery -- /bin/sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT1; echo; echo Press Enter to close...; read -r line'"
   },
   "network": {
     "format-wifi": "<span size='13000' foreground='#f5e0dc'></span>  {signalStrength}%",
