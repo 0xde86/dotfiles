@@ -107,14 +107,16 @@ flutter doctor -v
 ## Use ly as display manager
 
 ```bash
-systemctl disable cosmic-greeter-daemon.service
-systemctl disable cosmic-greeter.service
-systemctl enable ly@tty2.service
+sudo ./setup_ly.sh
 ```
+
+This installs Ly and `brightnessctl`, applies the repository's Ly theme and
+console palette, disables the COSMIC greeters when present, and enables Ly on
+TTY 2. The display-manager change takes effect after rebooting.
 
 ## Raspberry Pi dev
 
-1. Install "Raspberry Pi Pico" extention for VSCode
+1. Install "Raspberry Pi Pico" extension for VSCode
 2. ```sudo pacman -S minicom```
 3. create `/etc/udev/rules.d/60-openocd.rules`
 ```
