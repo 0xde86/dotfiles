@@ -18,9 +18,18 @@ printf "\n ────────── Updating Go software ─────�
 gup update
 
 printf "\n ────────── Updating helix ────────── \n\n"
-cd ~/.local/src/helix
-git pull --ff-only
-cargo install --path helix-term --locked
+cd ~/.local/src/helix || exit 1
+helix_head_before=$(git rev-parse HEAD) || exit 1
+if git pull --ff-only; then
+    helix_head_after=$(git rev-parse HEAD) || exit 1
+    if [[ "$helix_head_before" != "$helix_head_after" ]]; then
+        cargo install --path helix-term --locked
+    else
+        printf "Helix is already up to date; skipping build.\n"
+    fi
+else
+    printf "Helix update failed; skipping build.\n" >&2
+fi
 
 printf "\n ────────── Updating bun ────────── \n\n"
 bun upgrade
