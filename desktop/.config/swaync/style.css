@@ -26,6 +26,12 @@
   font-family: "JetBrainsMonoNL Nerd Font";
 }
 
+/* Align the card with Hyprland's 4px window gap while preserving its padding. */
+notificationwindow > scrolledwindow {
+  margin-top: -2px;
+  margin-right: -8px;
+}
+
 .control-center {
   border: var(--border);
 }

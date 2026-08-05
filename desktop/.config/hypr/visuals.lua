@@ -25,7 +25,8 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 6,
+        -- Match SwayNC's 6px outer radius after adding the 2px window border.
+        rounding       = 4,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
