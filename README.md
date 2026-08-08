@@ -7,7 +7,7 @@ Installation script is expected to be executed on CachyOS with Cosmic DE install
 ## Install
 
 ```bash
-git clone git@github.com:x-dvr/dotfiles.git
+git clone git@github.com:0xde86/dotfiles.git
 cd dotfiles
 bash ./install.sh
 ```

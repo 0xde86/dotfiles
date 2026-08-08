@@ -136,7 +136,7 @@ source ~/.zshenv
 zvm i --zls master
 
 # Install Go manager
-curl -fsSL https://raw.githubusercontent.com/x-dvr/gm/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/0xde86/gm/master/install.sh | bash
 source ~/.zshenv
 
 # Install Go toolchain
