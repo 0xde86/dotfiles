@@ -49,5 +49,5 @@
   },
   "effortLevel": "xhigh",
   "tui": "fullscreen",
-  "theme": "auto"
+  "theme": "dark-ansi"
 }

@@ -4,6 +4,7 @@ sudo pacman -Syu
 
 sudo pacman -S --needed base-devel git libusb
 sudo pacman -S ttf-jetbrains-mono-nerd ttf-font-nerd ttf-firacode-nerd ttf-font-awesome stow fzf eza ripgrep bat btop kitty starship
+sudo pacman -S --needed aarch64-linux-gnu-gcc riscv64-linux-gnu-gcc
 sudo pacman -S bubblewrap socat
 sudo pacman -S yazi ffmpeg 7zip jq poppler fd zoxide imagemagick
 sudo pacman -S zed neovim vscodium lldb hugo graphviz docker
