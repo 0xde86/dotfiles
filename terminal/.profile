@@ -1,5 +1,4 @@
-export EDITOR=helix
-
+export EDITOR=hx
 # Rustup
 . "$HOME/.cargo/env"
 
