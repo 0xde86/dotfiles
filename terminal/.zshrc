@@ -1,7 +1,13 @@
+# Interactive shells only: prompt, completion, aliases, keybindings.
+#
+# Environment and PATH belong in ~/.config/shell/env (loaded via ~/.zshenv).
+# Anything exported here is invisible to scripts and to programs launched
+# from Hyprland.
+
+# fpath must be extended before compinit, or these completions never load.
+fpath=(~/.zsh/zsh-completions/src $fpath)
 autoload -Uz compinit
 compinit
-
-fpath=(~/.zsh/zsh-completions/src $fpath)
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
@@ -11,7 +17,13 @@ eval "$(starship init zsh)"
 eval "$(fnm env --use-on-cd)"
 eval "$(fnm completions --shell zsh)"
 
+# bun completions
+[ -s "/home/vir/.bun/_bun" ] && source "/home/vir/.bun/_bun"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias ls="eza"
 alias ll="eza -la"
@@ -24,25 +36,6 @@ alias zed="zeditor"
 alias frbc="flutter_rust_bridge_codegen"
 alias rpiimager='sudo QT_QPA_PLATFORM=wayland WAYLAND_DISPLAY="$WAYLAND_DISPLAY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" rpi-imager'
 alias tinycode='tinygo-edit --editor codium --target pico2'
-
-export EDITOR="hx"
-export VISUAL="hx"
-export SUDO_EDITOR="hx"
-export HELIX_RUNTIME="$HOME/.local/src/helix/runtime"
-export CHROME_EXECUTABLE="brave"
-export PATH="$PATH:$HOME/bin"
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.rpiboot:$PATH
-
-export PATH="$HOME/.tinygo/tinygo/bin:$PATH"
-export PATH="$HOME/flutter/bin:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$PATH"
-export PATH="$HOME/Android/Sdk/emulator:$PATH"
-export ANDROID_HOME="$HOME/Android/Sdk"
-export PATH="$HOME/.alire/bin:$PATH"
-export PATH="$HOME/.als/bin:$PATH"
-
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey '^H' backward-kill-word
 bindkey '5~' kill-word
@@ -78,16 +71,7 @@ function clmax() {
 }
 
 function ahx() {
-	alr exec -- helix "$@"
+	alr exec -- hx "$@"
 }
 
-eval "$(ssh-agent -s)" > /dev/null
-
 fastfetch
-
-# bun completions
-[ -s "/home/vir/.bun/_bun" ] && source "/home/vir/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"

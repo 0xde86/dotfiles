@@ -1,12 +1,6 @@
-export EDITOR=hx
-# Rustup
-. "$HOME/.cargo/env"
+# Read by sh/bash login shells and by anything that is not zsh.
+#
+# zsh NEVER reads this file — not even as a login shell. It uses ~/.zshenv,
+# which sources the same env file, so the two stay in sync by construction.
 
-# ZVM
-export ZVM_INSTALL="$HOME/.zvm/self"
-export PATH="$PATH:$HOME/.zvm/bin"
-export PATH="$PATH:$ZVM_INSTALL/"
-
-# GM (Go version manager)
-export PATH="$HOME/.gm/bin:$PATH"
-eval $(gm env)
+[ -f "$HOME/.config/shell/env" ] && . "$HOME/.config/shell/env"

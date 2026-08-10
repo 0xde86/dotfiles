@@ -85,8 +85,10 @@ git clone --depth 1 -b stable https://github.com/flutter/flutter.git ~/flutter
 
 # Prepare dotfiles
 cd ~/dotfiles
-rm ~/.zshrc
-rm ~/.zshenv
+rm -f ~/.zshrc
+rm -f ~/.zshenv
+rm -f ~/.zprofile
+rm -f ~/.profile
 stow terminal
 stow dev
 rm -rf ~/.config/cosmic

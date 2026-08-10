@@ -1,0 +1,81 @@
+# Environment and PATH — the single source of truth.
+#
+# Sourced by ~/.zshenv (so: every zsh, plus the Hyprland session via
+# /etc/ly/setup.sh) and by ~/.profile (so: sh/bash login shells).
+#
+# POSIX sh only — no zsh-isms. Every addition below is idempotent, so
+# re-sourcing this file in a nested shell can never duplicate an entry.
+
+# Prepend $1 to PATH if it is a real directory and not already present.
+path_prepend() {
+	[ -d "$1" ] || return 0
+	case ":$PATH:" in
+	*":$1:"*) return 0 ;;
+	esac
+	PATH="$1:$PATH"
+	export PATH
+}
+
+# Same, but at the end of PATH.
+path_append() {
+	[ -d "$1" ] || return 0
+	case ":$PATH:" in
+	*":$1:"*) return 0 ;;
+	esac
+	PATH="$PATH:$1"
+	export PATH
+}
+
+# --- Editor ---------------------------------------------------------------
+# The binary is `hx`; there is no `helix` in PATH (built from source into
+# ~/.cargo/bin). Set here rather than in hypr/env.lua so GUI-launched
+# programs and terminals agree.
+export EDITOR="hx"
+export VISUAL="hx"
+export SUDO_EDITOR="hx"
+export HELIX_RUNTIME="$HOME/.local/src/helix/runtime"
+
+export CHROME_EXECUTABLE="brave"
+
+# --- PATH -----------------------------------------------------------------
+# Listed in increasing order of precedence: each path_prepend puts its
+# directory in front of the previous ones, so the last call wins.
+
+path_prepend "$HOME/bin"
+path_prepend "$HOME/.local/bin"
+path_prepend "$HOME/.rpiboot"
+
+# TinyGo
+path_prepend "$HOME/.tinygo/tinygo/bin"
+
+# Android SDK
+export ANDROID_HOME="$HOME/Android/Sdk"
+path_prepend "$ANDROID_HOME/cmdline-tools/latest/bin"
+path_prepend "$ANDROID_HOME/platform-tools"
+path_prepend "$ANDROID_HOME/emulator"
+
+# Flutter
+path_prepend "$HOME/flutter/bin"
+
+# Ada: Alire and the Ada Language Server
+path_prepend "$HOME/.alire/bin"
+path_prepend "$HOME/.als/bin"
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+path_prepend "$BUN_INSTALL/bin"
+
+# Rustup — its own env file already guards against double-prepending.
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# GM (Go version manager). `gm env` prepends to PATH unguarded, so only
+# evaluate it once; GOROOT tells us whether a parent shell already did.
+path_prepend "$HOME/.gm/bin"
+if [ -z "$GOROOT" ] && command -v gm >/dev/null 2>&1; then
+	eval "$(gm env)"
+fi
+
+# ZVM (Zig version manager) — appended, matching its installer's default.
+export ZVM_INSTALL="$HOME/.zvm/self"
+path_append "$HOME/.zvm/bin"
+path_append "$ZVM_INSTALL"
