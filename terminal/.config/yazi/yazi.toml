@@ -61,6 +61,9 @@ download = [
 
 [open]
 rules = [
+	# Html
+	{ url = "*.html", use = "open" },
+    { mime = "text/html", use = "open" },
 	# Folder
 	{ url = "*/", use = [ "edit", "open", "reveal" ] },
 	# Text
