@@ -6,10 +6,17 @@ hl.config({
 
     -- https://wiki.hypr.land/Configuring/Basics/Variables/#input
     input = {
-        kb_layout  = "us",
-        kb_variant = "",
+        -- "us" stays first: binds are resolved against the first layout, so
+        -- SUPER + H/J/K/L keep working while typing in Russian.
+        kb_layout  = "us,ru",
+        kb_variant = ",",
         kb_model   = "",
-        kb_options = "",
+        -- Toggle layouts with ALT + SHIFT. Other common choices:
+        --   grp:caps_toggle       -- Caps Lock
+        --   grp:ctrl_shift_toggle -- CTRL + SHIFT
+        --   grp:toggle            -- right ALT
+        -- (SUPER + space is taken by the launcher, so grp:win_space_toggle is out.)
+        kb_options = "grp:alt_shift_toggle",
         kb_rules   = "",
 
         follow_mouse = 1,
@@ -21,15 +28,6 @@ hl.config({
         },
     },
 })
-
--- keyboard switch
--- hl.config({
---     input = {
---         kb_layout  = "us,cz",
---         kb_variant = ",qwerty",
---         kb_options = "grp:alt_shift_toggle",
---     },
--- })
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Gestures/
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })

@@ -1,0 +1,58 @@
+[2026-08-12 22:42:48.590] [info] Using configuration file t-final.json
+[2026-08-12 22:42:48.592] [info] Discovered appearance 'dark'
+[2026-08-12 22:42:48.616] [debug] Try expanding: $XDG_CONFIG_HOME/waybar/style-dark.css
+[2026-08-12 22:42:48.616] [debug] Try expanding: $XDG_CONFIG_HOME/waybar/style.css
+[2026-08-12 22:42:48.616] [debug] Try expanding: $HOME/.config/waybar/style-dark.css
+[2026-08-12 22:42:48.616] [debug] Try expanding: $HOME/.config/waybar/style.css
+[2026-08-12 22:42:48.616] [debug] Found config file: /home/vir/.config/waybar/style.css
+[2026-08-12 22:42:48.616] [info] Using CSS file /home/vir/.config/waybar/style.css
+[2026-08-12 22:42:48.619] [debug] Output detection done: DP-3 (Philips Consumer Electronics Company 27M2N3800A UK02523029233)
+[2026-08-12 22:42:48.620] [info] Hyprland IPC starting
+[2026-08-12 22:42:48.626] [debug] hyprland language initLanguage found English (US)
+[2026-08-12 22:42:48.626] [debug] hyprland language update with full name English (US)
+[2026-08-12 22:42:48.626] [debug] hyprland language update with short name us
+[2026-08-12 22:42:48.626] [debug] hyprland language update with short description en
+[2026-08-12 22:42:48.626] [debug] hyprland language update with variant 
+[2026-08-12 22:42:48.626] [debug] hyprland language formatted layout name <span size='13000' foreground='#c6d0f5'>󰌌</span>  EN
+[2026-08-12 22:42:48.630] [debug] Output detection done: eDP-1 (Samsung Display Corp. 0xA029 )
+[2026-08-12 22:42:48.639] [debug] hyprland language initLanguage found English (US)
+[2026-08-12 22:42:48.639] [debug] hyprland language update with full name English (US)
+[2026-08-12 22:42:48.639] [debug] hyprland language update with short name us
+[2026-08-12 22:42:48.639] [debug] hyprland language update with short description en
+[2026-08-12 22:42:48.639] [debug] hyprland language update with variant 
+[2026-08-12 22:42:48.639] [debug] hyprland language formatted layout name <span size='13000' foreground='#c6d0f5'>󰌌</span>  EN
+[2026-08-12 22:42:48.671] [debug] GTK widget tree:
+window#waybar..background.top.mode-default.eDP-1:dir(ltr)
+  decoration:dir(ltr)
+  box.horizontal:dir(ltr)
+    box.horizontal.modules-left:dir(ltr)
+    box.horizontal.modules-center:dir(ltr)
+    box.horizontal.modules-right:dir(ltr)
+      widget:dir(ltr)
+        label#language.module:dir(ltr)
+
+[2026-08-12 22:42:48.671] [debug] GTK widget tree:
+window#waybar..background.top.DP-3.mode-default:dir(ltr)
+  decoration:dir(ltr)
+  box.horizontal:dir(ltr)
+    box.horizontal.modules-left:dir(ltr)
+    box.horizontal.modules-center:dir(ltr)
+    box.horizontal.modules-right:dir(ltr)
+      widget:dir(ltr)
+        label#language.module:dir(ltr)
+
+[2026-08-12 22:42:48.671] [debug] hyprland language update with full name English (US)
+[2026-08-12 22:42:48.671] [debug] hyprland language update with short name us
+[2026-08-12 22:42:48.671] [debug] hyprland language update with short description en
+[2026-08-12 22:42:48.671] [debug] hyprland language update with variant 
+[2026-08-12 22:42:48.671] [debug] hyprland language formatted layout name <span size='13000' foreground='#c6d0f5'>󰌌</span>  EN
+[2026-08-12 22:42:48.672] [debug] hyprland language update with full name English (US)
+[2026-08-12 22:42:48.672] [debug] hyprland language update with short name us
+[2026-08-12 22:42:48.672] [debug] hyprland language update with short description en
+[2026-08-12 22:42:48.672] [debug] hyprland language update with variant 
+[2026-08-12 22:42:48.672] [debug] hyprland language formatted layout name <span size='13000' foreground='#c6d0f5'>󰌌</span>  EN
+[2026-08-12 22:42:48.672] [info] Bar configured (width: 2304, height: 32) for output: DP-3
+[2026-08-12 22:42:48.672] [info] Bar configured (width: 1600, height: 32) for output: eDP-1
+[2026-08-12 22:42:48.674] [debug] hyprland IPC received openlayer>>waybar
+[2026-08-12 22:42:48.675] [info] Bar configured (width: 1600, height: 32) for output: eDP-1
+[2026-08-12 22:42:48.676] [debug] hyprland IPC received openlayer>>waybar

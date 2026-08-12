@@ -8,7 +8,21 @@
   "margin-bottom": 0,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["bluetooth", "pulseaudio", "battery", "network", "clock", "power-profiles-daemon"],
+  "modules-right": ["hyprland/language", "bluetooth", "pulseaudio", "battery", "network", "clock", "power-profiles-daemon"],
+  // format-<lang> keys match {shortDescription} ("en", "ru"), not the layout
+  // short name ("us"). Once one of them matches, "format" gets the matched
+  // string as the positional {} and named fields ({shortDescription}, {long},
+  // ...) are NOT bound -- using one there makes waybar 0.15 disable the whole
+  // module with "argument not found".
+  // Without "keyboard-name" the module follows every keyboard; set it (see
+  // `hyprctl devices`) to pin it to one.
+  "hyprland/language": {
+    "format": "<span size='13000' foreground='#c6d0f5'>󰌌</span>  {}",
+    "format-en": "EN",
+    "format-ru": "RU",
+    "tooltip-format": "{long}",
+    "on-click": "hyprctl switchxkblayout current next"
+  },
   "clock": {
     "format": "<span></span>  {:%a %d  %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
