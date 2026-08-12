@@ -1,7 +1,0 @@
-{"modules-right":["hyprland/language"],
- "hyprland/language":{
-   "format":"<span size='13000' foreground='#c6d0f5'>󰌌</span>  {}",
-   "format-en":"EN",
-   "format-ru":"RU",
-   "tooltip-format":"{long}",
-   "on-click":"hyprctl switchxkblayout current next"}}
