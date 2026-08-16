@@ -23,7 +23,14 @@ helix_head_before=$(git rev-parse HEAD) || exit 1
 if git pull --ff-only; then
     helix_head_after=$(git rev-parse HEAD) || exit 1
     if [[ "$helix_head_before" != "$helix_head_after" ]]; then
-        cargo install --path helix-term --locked
+        if cargo install --path helix-term --locked; then
+            # Grammar revisions are pinned in languages.toml, which is compiled
+            # into the binary, so refetch and rebuild them against the new one.
+            hx --grammar fetch
+            hx --grammar build
+        else
+            printf "Helix build failed; skipping grammar rebuild.\n" >&2
+        fi
     else
         printf "Helix is already up to date; skipping build.\n"
     fi
