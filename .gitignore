@@ -10,6 +10,3 @@ claude/.claude/*
 !claude/.claude/keybindings.json
 !claude/.claude/settings.json
 !claude/.claude/statusline.sh
-
-desktop/.local/state/cosmic/com.system76.CosmicEdit/v1/*
-desktop/.local/state/cosmic/com.system76.CosmicSettings/v1/active_page

@@ -1,6 +1,6 @@
 # My Linux setup :rocket:
 
-Installation script is expected to be executed on CachyOS with Cosmic DE installed. Probably works on other flavors of Arch.
+Installation script is expected to be executed on CachyOS with any DE installed. Probably works on other flavors of Arch.
 
 > note: during installation of CachyOS uncheck installation of fish shell
 
@@ -111,8 +111,9 @@ sudo ./setup_ly.sh
 ```
 
 This installs Ly and `brightnessctl`, applies the repository's Ly theme and
-console palette, disables the COSMIC greeters when present, and enables Ly on
-TTY 2. The display-manager change takes effect after rebooting.
+console palette, disables any pre-existing greeter that would compete with Ly,
+and enables Ly on TTY 2. The display-manager change takes effect after
+rebooting.
 
 ## Raspberry Pi dev
 

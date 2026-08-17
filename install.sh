@@ -91,9 +91,6 @@ rm -f ~/.zprofile
 rm -f ~/.profile
 stow terminal
 stow dev
-rm -rf ~/.config/cosmic
-rm -rf ~/.local/state/cosmic
-rm -rf ~/.local/state/cosmic-comp
 stow desktop
 
 chsh -s $(which zsh)

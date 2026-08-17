@@ -43,7 +43,7 @@
     "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭</span>  Disconnected",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "<span size='13000' foreground='#f5e0dc'></span>  Disconnected",
-    "on-click-right": "cosmic-settings network",
+    "on-click-right": "kitty --override confirm_os_window_close=0 -e nmtui",
     "on-click": "nm-connection-editor"
   },
   "pulseaudio": {
@@ -52,7 +52,7 @@
       "format-icons": {
           "default": ["", "", ""]
       },
-      "on-click-right": "cosmic-settings sound",
+      "on-click-right": "pavucontrol",
       "on-click": "pavucontrol"
   },
   "bluetooth": {
@@ -62,7 +62,7 @@
 		"format-disabled": "󰂲",
 		"tooltip-format": "{status}",
 		"on-click": "blueman-manager",
-    "on-click-right": "cosmic-settings bluetooth",
+    "on-click-right": "blueman-adapters",
 		"tooltip-format-connected": "Bluetooth: {device_alias}"
 	},
   // "cpu": {

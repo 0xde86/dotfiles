@@ -42,8 +42,9 @@ install -d -m 0755 /etc/ly
 install -m 0644 -- "$CONFIG_SOURCE" "$CONFIG_DESTINATION"
 install -m 0755 -- "$STARTUP_SOURCE" "$STARTUP_DESTINATION"
 
-# These are the greeters installed on the source machine. Leave them installed,
-# but prevent them from competing with Ly on the next boot.
+# The CachyOS COSMIC image this repo is bootstrapped from ships these greeters.
+# Leave them installed, but prevent them from competing with Ly on the next
+# boot. No-ops on images that don't have them.
 for unit in cosmic-greeter-daemon.service cosmic-greeter.service; do
     for unit_dir in /etc/systemd/system /run/systemd/system \
         /usr/local/lib/systemd/system /usr/lib/systemd/system \
