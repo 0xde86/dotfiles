@@ -43,7 +43,7 @@ sudo systemctl enable --now libvirtd
 sudo usermod -aG libvirt $(whoami)
 # start the default NAT network so VMs have internet access
 sudo virsh net-start default
-sudo virsh net-autostart default   
+sudo virsh net-autostart default
 
 # Setup appimage support
 sudo pacman -S fuse
@@ -93,8 +93,6 @@ stow terminal
 stow dev
 stow desktop
 
-# stow only brings back VSCodium's settings.json; the extensions themselves live
-# outside the config tree and are reinstalled from the committed list.
 bash ./vscodium_extensions.sh restore
 
 chsh -s $(which zsh)

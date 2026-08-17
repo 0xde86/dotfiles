@@ -135,6 +135,28 @@ so drift shows up as a diff — commit `vscodium_extensions.txt` to keep it.
 No versions are pinned, so `restore` always pulls the current build from Open
 VSX. To pin one, edit the list by hand and write `publisher.name@1.2.3`.
 
+## Zed extensions
+
+Zed needs no install script. `~/.config/zed` is a stow symlink into
+`dev/.config/zed`, and the `auto_install_extensions` block in `settings.json` is
+authoritative — Zed installs everything listed there on startup, and uninstalls
+any id mapped to `false`.
+
+The one catch: Zed does **not** add entries to that block when you install from
+the extensions page, so an extension added through the UI stays invisible to
+git. `zed_extensions.sh` catches that:
+
+```bash
+./zed_extensions.sh diff   # report drift, printing paste-ready lines
+./zed_extensions.sh list   # print installed extension ids
+```
+
+`update.sh` runs `diff` on every update. It only reads — `settings.json` is
+JSONC, so there is no safe automated round-trip; paste the lines it prints.
+
+Note that `dev/.config/zed/themes/` holds Catppuccin theme files tracked
+directly and is unrelated to the extension mechanism.
+
 ## Raspberry Pi dev
 
 1. Install "Raspberry Pi Pico" extension for VSCode

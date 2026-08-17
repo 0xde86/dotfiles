@@ -57,6 +57,7 @@ printf "\n ────────── Updating rpiboot ───────
 cd ~/.rpiboot
 git pull --recurse-submodules
 make
+cd ~/dotfiles
 
 printf "\n ────────── Updating claude code ────────── \n\n"
 claude update
@@ -66,4 +67,10 @@ codex update
 
 printf "\n ────────── Recording VSCodium extensions ────────── \n\n"
 # Only rewrites the list; commit it to make the change stick.
-"$(dirname "$(readlink -f "$0")")/vscodium_extensions.sh" save
+DOTFILES="$(dirname "$(readlink -f "$0")")"
+"$DOTFILES/vscodium_extensions.sh" save
+
+printf "\n ────────── Checking Zed extensions ────────── \n\n"
+# Read-only: Zed's settings.json is the source of truth, this just reports
+# anything installed from the extensions page that never made it into git.
+"$DOTFILES/zed_extensions.sh" diff || true
