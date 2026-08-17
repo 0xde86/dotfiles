@@ -115,6 +115,26 @@ console palette, disables any pre-existing greeter that would compete with Ly,
 and enables Ly on TTY 2. The display-manager change takes effect after
 rebooting.
 
+## VSCodium extensions
+
+`~/.config/VSCodium` is a stow symlink into `dev/.config/VSCodium`, so
+`User/settings.json` is versioned automatically. Extensions are not — they live
+in `~/.vscode-oss/extensions` and are far too big to commit — so the set of
+installed extensions is tracked as a plain id list in `vscodium_extensions.txt`.
+
+```bash
+./vscodium_extensions.sh save             # record what is installed now
+./vscodium_extensions.sh diff             # show drift between list and reality
+./vscodium_extensions.sh restore          # install everything in the list
+./vscodium_extensions.sh restore --prune  # ...and remove anything not listed
+```
+
+`install.sh` runs `restore` right after `stow dev`, and `update.sh` runs `save`
+so drift shows up as a diff — commit `vscodium_extensions.txt` to keep it.
+
+No versions are pinned, so `restore` always pulls the current build from Open
+VSX. To pin one, edit the list by hand and write `publisher.name@1.2.3`.
+
 ## Raspberry Pi dev
 
 1. Install "Raspberry Pi Pico" extension for VSCode

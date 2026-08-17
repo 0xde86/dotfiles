@@ -63,3 +63,7 @@ claude update
 
 printf "\n ────────── Updating codex ────────── \n\n"
 codex update
+
+printf "\n ────────── Recording VSCodium extensions ────────── \n\n"
+# Only rewrites the list; commit it to make the change stick.
+"$(dirname "$(readlink -f "$0")")/vscodium_extensions.sh" save

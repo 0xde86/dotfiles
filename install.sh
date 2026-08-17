@@ -93,6 +93,10 @@ stow terminal
 stow dev
 stow desktop
 
+# stow only brings back VSCodium's settings.json; the extensions themselves live
+# outside the config tree and are reinstalled from the committed list.
+bash ./vscodium_extensions.sh restore
+
 chsh -s $(which zsh)
 
 # Setup zsh plugins
