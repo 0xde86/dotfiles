@@ -7,6 +7,18 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  // Zed installs these on startup, so a fresh machine needs no extension step.
+  // Zed does NOT add entries here when you install from the extensions page —
+  // run ./zed_extensions.sh diff to catch anything installed by hand.
+  // Setting an id to false uninstalls it instead.
+  "auto_install_extensions": {
+    "ada": true,
+    "catppuccin-icons": true,
+    "git-firefly": true,
+    "html": true,
+    "toml": true,
+    "zig": true,
+  },
   "theme": {
     "mode": "dark",
     "light": "Catppuccin Latte",
@@ -16,6 +28,9 @@
     "mode": "dark",
     "light": "Catppuccin Latte",
     "dark": "Catppuccin Frappé",
+  },
+  "debugger": {
+    "dock": "left"
   },
   "ui_font_size": 16.5,
   "buffer_font_size": 13.0,
