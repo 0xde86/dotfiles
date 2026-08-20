@@ -8,7 +8,7 @@
   "margin-bottom": 0,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["hyprland/language", "bluetooth", "pulseaudio", "battery", "network", "clock", "power-profiles-daemon"],
+  "modules-right": ["temperature#cpu", "temperature#gpu", "hyprland/language", "bluetooth", "pulseaudio", "battery", "network", "clock", "power-profiles-daemon"],
   "hyprland/language": {
     "format": "<span size='13000' rise='-1024' foreground='#c6d0f5'>󰌌</span>  {}",
     "format-en": "EN",
@@ -65,6 +65,26 @@
     "on-click-right": "blueman-adapters",
 		"tooltip-format-connected": "Bluetooth: {device_alias}"
 	},
+  "temperature#cpu": {
+    "hwmon-path-abs": "/sys/devices/platform/PNP0C14:08/wmi_bus/wmi_bus-PNP0C14:08/A70591CE-A997-11DA-B012-B622A1EF5492-24/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "critical-threshold": 90,
+    "format": "<span size='13000'>\uF2DB</span>  {temperatureC}°",
+    "format-critical": "<span size='13000' foreground='#e78284'>󰻠</span>  {temperatureC}°",
+    "tooltip-format": "CPU {temperatureC}°C",
+    "on-click": "kitty --override confirm_os_window_close=0 --title 'System Monitor' btop"
+  },
+  "temperature#gpu": {
+    "hwmon-path-abs": "/sys/devices/platform/PNP0C14:08/wmi_bus/wmi_bus-PNP0C14:08/A70591CE-A997-11DA-B012-B622A1EF5492-24/hwmon",
+    "input-filename": "temp2_input",
+    "interval": 5,
+    "critical-threshold": 85,
+    "format": "<span size='13000'>󰢮</span>  {temperatureC}°",
+    "format-critical": "<span size='13000' foreground='#e78284'>󰢮</span>  {temperatureC}°",
+    "tooltip-format": "GPU {temperatureC}°C",
+    "on-click": "kitty --override confirm_os_window_close=0 --title 'System Monitor' btop"
+  },
   // "cpu": {
   //   "interval": 30,
   //   "format":"  {usage}%",
