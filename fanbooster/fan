@@ -1,0 +1,45 @@
+#!/bin/sh
+# fan - convenience wrapper around the fanctl systemd service.
+#
+# Changing service state needs root; reporting it does not, so `fan status`
+# and `fan watch` stay usable without a password prompt.
+set -eu
+
+unit=fanctl.service
+
+as_root() {
+	if [ "$(id -u)" -eq 0 ]; then
+		"$@"
+	else
+		sudo "$@"
+	fi
+}
+
+case "${1:-status}" in
+start | stop | restart)
+	as_root systemctl "$1" "$unit"
+	;;
+enable)
+	as_root systemctl enable --now "$unit"
+	;;
+disable)
+	as_root systemctl disable --now "$unit"
+	;;
+status)
+	# systemctl exits non-zero when the unit is stopped, which is a normal
+	# thing to be asking about, so do not let set -e abort on it.
+	systemctl status "$unit" --no-pager || true
+	echo
+	fanctl -status
+	;;
+watch)
+	watch -n2 fanctl -status
+	;;
+logs)
+	journalctl -u "$unit" -f
+	;;
+*)
+	echo "usage: fan {start|stop|restart|enable|disable|status|watch|logs}" >&2
+	exit 2
+	;;
+esac

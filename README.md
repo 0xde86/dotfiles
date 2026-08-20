@@ -157,6 +157,61 @@ JSONC, so there is no safe automated round-trip; paste the lines it prints.
 Note that `dev/.config/zed/themes/` holds Catppuccin theme files tracked
 directly and is unrelated to the extension mechanism.
 
+## Fan control (Alienware)
+
+`fanbooster/` is a small Go daemon that drives the laptop fans from live CPU and
+GPU temperatures. It exists because the usual Linux fan-control path does not
+work on this hardware: `dell_smm` exposes `pwm1`/`pwm3`, but they read back
+`N/A` and the EC ignores writes, so `fancontrol`/`pwmconfig` find nothing to
+control. The only writable knob is `fanN_boost` (0-255) on the `alienware_wmi`
+hwmon device, which biases the firmware curve rather than replacing it.
+
+The stock `balanced` profile reacts slowly — the CPU can sit pegged at 100 °C
+for ~15 seconds before the fans lift off idle — so `fanctl` samples
+`tempN_input` every couple of seconds and rewrites `fanN_boost` to follow a
+curve of your own.
+
+Build, install, and start at boot:
+
+```bash
+cd fanbooster
+make build
+sudo make install
+sudo make enable
+```
+
+Day to day, `fan` wraps the service:
+
+```bash
+fan              # service state plus live temps, RPM and boost
+fan start | stop | restart
+fan watch        # live-updating status
+fan logs
+```
+
+Only the state-changing verbs need root; `fan status` and `fan watch` do not.
+`sudo make uninstall` removes the binaries and the unit.
+
+Curves are `temp:boost` pairs, compiled in as defaults and overridable per run.
+Try one against the real sensors without touching the hardware:
+
+```bash
+fanctl -dry-run -v -cpu 70:0,85:120,95:255
+```
+
+To change what the service runs, `sudo systemctl edit fanctl.service` and
+override `ExecStart` — blank it first, then set it again.
+
+Three things worth remembering:
+
+- The boost stacks on top of `/sys/firmware/acpi/platform_profile`, so pairing
+  it with `performance` raises the floor it boosts from.
+- The unit must **not** set `ProtectKernelTunables=yes`. That remounts `/sys`
+  read-only and `fanctl` silently loses the ability to write `fanN_boost`.
+- `fanctl` restores whatever boost it found at startup when it receives
+  SIGTERM, so `fan stop` hands the fans back to the firmware instead of
+  leaving them pinned.
+
 ## Raspberry Pi dev
 
 1. Install "Raspberry Pi Pico" extension for VSCode

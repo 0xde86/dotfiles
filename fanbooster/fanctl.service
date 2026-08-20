@@ -1,0 +1,39 @@
+[Unit]
+Description=fanctl - temperature-driven Alienware fan boost
+Documentation=man:fanctl(8)
+# The alienware_wmi hwmon device must exist before the curve can be driven.
+After=sysinit.target
+ConditionPathExistsGlob=/sys/class/hwmon/hwmon*/name
+
+[Service]
+Type=simple
+# Curves are compiled-in defaults; override them with:
+#   sudo systemctl edit fanctl.service
+# adding, for example:
+#   [Service]
+#   ExecStart=
+#   ExecStart=/usr/local/bin/fanctl -cpu 70:0,85:120,95:255
+ExecStart=/usr/local/bin/fanctl
+Restart=on-failure
+RestartSec=5s
+
+# fanctl restores the boost it found at startup when it receives SIGTERM, so
+# give it a moment to unwind rather than killing it outright.
+KillSignal=SIGTERM
+TimeoutStopSec=10s
+
+# It needs nothing but /sys/class/hwmon, so take everything else away.
+NoNewPrivileges=yes
+ProtectHome=yes
+ProtectSystem=strict
+PrivateTmp=yes
+PrivateNetwork=yes
+RestrictAddressFamilies=AF_UNIX
+RestrictSUIDSGID=yes
+LockPersonality=yes
+SystemCallArchitectures=native
+# Do NOT set ProtectKernelTunables=yes here: it remounts /sys read-only and
+# fanctl would lose the ability to write fanN_boost.
+
+[Install]
+WantedBy=multi-user.target

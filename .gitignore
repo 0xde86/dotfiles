@@ -10,3 +10,5 @@ claude/.claude/*
 !claude/.claude/keybindings.json
 !claude/.claude/settings.json
 !claude/.claude/statusline.sh
+
+fanbooster/fanctl
