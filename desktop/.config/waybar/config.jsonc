@@ -71,7 +71,7 @@
     "interval": 5,
     "critical-threshold": 90,
     "format": "<span size='13000'>\uF2DB</span>  {temperatureC}°",
-    "format-critical": "<span size='13000' foreground='#e78284'>󰻠</span>  {temperatureC}°",
+    "format-critical": "<span size='13000' foreground='#e78284'>\uF2DB</span>  <span foreground='#e78284'>{temperatureC}°</span>",
     "tooltip-format": "CPU {temperatureC}°C",
     "on-click": "kitty --override confirm_os_window_close=0 --title 'System Monitor' btop"
   },
@@ -81,13 +81,13 @@
     "interval": 5,
     "critical-threshold": 85,
     "format": "<span size='13000'>󰢮</span>  {temperatureC}°",
-    "format-critical": "<span size='13000' foreground='#e78284'>󰢮</span>  {temperatureC}°",
+    "format-critical": "<span size='13000' foreground='#e78284'>󰢮</span>  <span foreground='#e78284'>{temperatureC}°</span>",
     "tooltip-format": "GPU {temperatureC}°C",
     "on-click": "kitty --override confirm_os_window_close=0 --title 'System Monitor' btop"
   },
   // "cpu": {
   //   "interval": 30,
-  //   "format":"  {usage}%",
+  //   "format":"  {usage}%",
   //   "cursor": true,
   //   "states": {
   //       "warning": 80,
