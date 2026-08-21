@@ -3,10 +3,13 @@ PREFIX  := /usr/local
 UNIT    := fanctl.service
 UNITDIR := /etc/systemd/system
 
-.PHONY: install uninstall enable disable start stop restart status logs clean
+.PHONY: build test install uninstall enable disable start stop restart status logs clean
 
 build:
 	go build -o $(BIN) ./...
+
+test:
+	go test ./...
 
 # Root: writes to $(PREFIX)/bin and $(UNITDIR).
 install:

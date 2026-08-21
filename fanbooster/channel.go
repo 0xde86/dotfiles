@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
 )
 
 // A channel pairs one temperature sensor with the fan boost it governs.
@@ -16,6 +17,8 @@ type channel struct {
 
 	initial int // boost found at startup, restored on exit
 	applied int // boost most recently written
+	wrote   time.Time
+	drifted bool // EC was last seen holding a boost we did not write
 }
 
 // temperature reports the channel's sensor reading. hwmon exposes
@@ -42,6 +45,7 @@ func (ch *channel) writeBoost(boost int) error {
 		return fmt.Errorf("%s: %w", ch.boostPath, err)
 	}
 	ch.applied = boost
+	ch.wrote = time.Now()
 	return nil
 }
 

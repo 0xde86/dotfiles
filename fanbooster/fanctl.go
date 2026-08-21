@@ -8,6 +8,11 @@
 // temperature dependence the firmware will not: it samples tempN_input and
 // rewrites fanN_boost to match a user-defined curve.
 //
+// Because that boost is only an offset, a quiet or cool profile caps how much
+// airflow any boost can buy. As a safety net fanctl also forces the
+// performance platform profile once a sensor has stayed past -profile-temp for
+// -profile-delay, and hands the profile back when the machine cools.
+//
 // Requires root to apply (writes to /sys); -dry-run works as an ordinary user.
 //
 //	go build -o fanctl fanctl.go
@@ -21,6 +26,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"math"
 	"os"
 	"os/signal"
 	"path/filepath"
@@ -83,14 +89,17 @@ func main() {
 
 func run() error {
 	var (
-		cpuSpec    = flag.String("cpu", defaultCPUCurve, "CPU fan curve as temp:boost,... (boost 0-255)")
-		gpuSpec    = flag.String("gpu", defaultGPUCurve, "GPU fan curve as temp:boost,... (boost 0-255)")
-		interval   = flag.Duration("interval", 2*time.Second, "sampling interval")
-		hysteresis = flag.Int("hysteresis", 12, "boost must fall this far below the applied value before easing off")
-		once       = flag.Bool("once", false, "sample and apply a single time, then exit")
-		status     = flag.Bool("status", false, "print current temperature, fan speed and boost, then exit")
-		dryRun     = flag.Bool("dry-run", false, "report each sample and what would be written, without touching the hardware")
-		verbose    = flag.Bool("v", false, "log every sample, not just changes")
+		cpuSpec      = flag.String("cpu", defaultCPUCurve, "CPU fan curve as temp:boost,... (boost 0-255)")
+		gpuSpec      = flag.String("gpu", defaultGPUCurve, "GPU fan curve as temp:boost,... (boost 0-255)")
+		interval     = flag.Duration("interval", 2*time.Second, "sampling interval")
+		hysteresis   = flag.Int("hysteresis", 12, "boost must fall this far below the applied value before easing off")
+		reassert     = flag.Duration("reassert", 30*time.Second, "re-write the boost this often even when it has not changed (0 disables)")
+		profileTemp  = flag.Float64("profile-temp", 70, "force the performance platform profile above this temperature in C (0 disables)")
+		profileDelay = flag.Duration("profile-delay", 30*time.Second, "how long the temperature must stay above -profile-temp before the profile is forced")
+		once         = flag.Bool("once", false, "sample and apply a single time, then exit")
+		status       = flag.Bool("status", false, "print current temperature, fan speed and boost, then exit")
+		dryRun       = flag.Bool("dry-run", false, "report each sample and what would be written, without touching the hardware")
+		verbose      = flag.Bool("v", false, "log every sample, not just changes")
 	)
 	flag.Parse()
 
@@ -129,10 +138,18 @@ func run() error {
 		},
 	}
 
+	// A machine whose firmware exposes no usable platform profile is still
+	// worth driving the boost curve on, so a guard that cannot be built is a
+	// warning rather than a failure.
+	guard, err := newProfileGuard(*profileTemp, *profileDelay, *dryRun)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "fanctl: platform profile guard disabled:", err)
+	}
+
 	// Reporting state only reads sysfs, so it needs no privileges and is safe
 	// to run against a daemon that is already driving the fans.
 	if *status {
-		return printStatus(dir, channels)
+		return printStatus(dir, channels, guard)
 	}
 
 	if !*dryRun && os.Geteuid() != 0 {
@@ -154,6 +171,7 @@ func run() error {
 	for _, ch := range channels {
 		fmt.Printf("  %s curve %s (boost now %d)\n", ch.label, ch.curve, ch.initial)
 	}
+	fmt.Printf("  guard %s (profile now %s)\n", guard.describe(), guard.current())
 	if *dryRun {
 		fmt.Println("  dry run: no writes will be made")
 	}
@@ -173,19 +191,57 @@ func run() error {
 					fmt.Fprintf(os.Stderr, "fanctl: restoring %s boost: %v\n", ch.label, err)
 				}
 			}
+			if err := guard.restore(); err != nil {
+				fmt.Fprintln(os.Stderr, "fanctl: restoring platform profile:", err)
+			}
 			fmt.Println("fanctl: restored initial boost")
 		}()
 	}
 
 	tick := func() error {
+		// The platform profile is one global setting, so it answers to the
+		// hottest sensor of the sample rather than to either channel alone.
+		hottest := math.Inf(-1)
 		for _, ch := range channels {
 			tempC, err := ch.temperature()
 			if err != nil {
 				return fmt.Errorf("%s sensor: %w", ch.label, err)
 			}
+
+			// The EC does not always keep the boost it is handed: a thermal
+			// mode change, a resume, or its own housekeeping can drop it back
+			// without telling anyone. Believing our own last write would then
+			// leave the fans unboosted for as long as the curve asks for the
+			// same value, so let the hardware's reading win over the cached
+			// one and report the disagreement -- a run that logs drift every
+			// few seconds is the EC refusing to be driven, not a curve
+			// problem.
+			if !*dryRun {
+				live, err := readInt(ch.boostPath)
+				if err != nil {
+					return fmt.Errorf("%s boost: %w", ch.label, err)
+				}
+				if live != ch.applied {
+					if !ch.drifted {
+						fmt.Printf("%s %s boost drifted %d -> %d, re-asserting\n",
+							time.Now().Format("15:04:05"), ch.label, ch.applied, live)
+						ch.drifted = true
+					}
+					ch.applied = live
+				} else {
+					ch.drifted = false
+				}
+			}
+
+			prev := ch.applied
 			want := ch.target(tempC, *hysteresis)
-			changed := want != ch.applied
-			if changed && !*dryRun {
+			changed := want != prev
+			// Re-assert on a slow cadence even when nothing changed. Drift
+			// detection only catches a dropped boost that sysfs admits to; a
+			// driver answering reads from its own cache would hide one, and a
+			// redundant write costs nothing.
+			stale := *reassert > 0 && time.Since(ch.wrote) >= *reassert
+			if (changed || stale) && !*dryRun {
 				if err := ch.writeBoost(want); err != nil {
 					return err
 				}
@@ -195,13 +251,14 @@ func run() error {
 			// no temperatures at all.
 			if changed || *verbose {
 				fmt.Printf("%s %s %5.1fC  %4d rpm  boost %3d -> %3d\n",
-					time.Now().Format("15:04:05"), ch.label, tempC, ch.rpm(), ch.applied, want)
+					time.Now().Format("15:04:05"), ch.label, tempC, ch.rpm(), prev, want)
 			}
 			if *dryRun {
 				ch.applied = want // track intent so hysteresis still behaves
 			}
+			hottest = math.Max(hottest, tempC)
 		}
-		return nil
+		return guard.update(hottest)
 	}
 
 	if err := tick(); err != nil {
