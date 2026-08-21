@@ -49,5 +49,6 @@
   },
   "effortLevel": "xhigh",
   "tui": "fullscreen",
-  "theme": "dark-ansi"
+  "theme": "dark-ansi",
+  "agentPushNotifEnabled": true
 }
