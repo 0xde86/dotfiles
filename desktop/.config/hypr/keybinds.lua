@@ -35,8 +35,8 @@ hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd("swaylock"))
 --   https://github.com/hyprwm/Hyprland/discussions/13238  (disable/re-enable monitor misbehaves)
 hl.bind(mainMod .. " + CTRL + Y", hl.dsp.exec_cmd("brightnessctl -d intel_backlight --save set 100%"))
 hl.bind(mainMod .. " + CTRL + H", hl.dsp.exec_cmd("brightnessctl -d intel_backlight --save set 0"))
-hl.bind(mainMod .. " + N",         hl.dsp.exec_cmd("hyprshutdown"))
-hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"))
+hl.bind(mainMod .. " + N",        hl.dsp.exec_cmd("hyprshutdown"))
+hl.bind(mainMod .. " + SHIFT + N",hl.dsp.exec_cmd("hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"))
 hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd("hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"))
 
 -- Move focus with mainMod + HJKL
