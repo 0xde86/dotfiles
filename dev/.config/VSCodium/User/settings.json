@@ -7,6 +7,32 @@
 	"editor.fontSize": 13,
 	"editor.allowVariableFonts": false,
 	"editor.fontLigatures": true,
+	"editor.tokenColorCustomizations": {
+		"[Catppuccin Frappé]": {
+			"textMateRules": [
+				{
+					"scope": ["punctuation", "meta.brace", "meta.delimiter", "keyword.operator"],
+					"settings": { "foreground": "#737994" }
+				}
+			]
+		}
+	},
+	"editor.semanticTokenColorCustomizations": {
+		"[Catppuccin Frappé]": {
+			"rules": { "operator": "#737994" }
+		}
+	},
+	"workbench.colorCustomizations": {
+		"[Catppuccin Frappé]": {
+			"editorBracketHighlight.foreground1": "#9c7c8e",
+			"editorBracketHighlight.foreground2": "#9e868a",
+			"editorBracketHighlight.foreground3": "#9b9593",
+			"editorBracketHighlight.foreground4": "#859890",
+			"editorBracketHighlight.foreground5": "#7992ad",
+			"editorBracketHighlight.foreground6": "#9186b1",
+			"editorBracketHighlight.unexpectedBracket.foreground": "#e78284"
+		}
+	},
 	"git.confirmSync": false,
 	"explorer.confirmDelete": false,
 	"workbench.sideBar.location": "right",
