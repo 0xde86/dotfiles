@@ -74,4 +74,8 @@ function ahx() {
 	alr exec -- hx "$@"
 }
 
-fastfetch
+if [[ "$TERM_PROGRAM" == vscode ]]; then
+	fastfetch --logo none
+else
+	fastfetch
+fi
