@@ -1,5 +1,6 @@
 [index]
-last_update = 287015061
+auto_update_asked = true
+last_update = 289253597
 [toolchain]
 assistant = false
 [toolchain.external]
