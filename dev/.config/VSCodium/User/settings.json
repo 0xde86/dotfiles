@@ -32,7 +32,6 @@
 		"editor.insertSpaces": true,
 		"editor.tabSize": 3
 	},
-	"ada.useGnatformat": true,
 	"[dart]": {
 		// Automatically format code on save and during typing of certain characters
 		// (like `;` and `}`).
